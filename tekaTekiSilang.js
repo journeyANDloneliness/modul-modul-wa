@@ -92,7 +92,7 @@ _________________________________________
 			if(objekPesan.pesan == r[0]+". "+r[1]){
 				jawabPesan("silahkan jawab pertanyaan untuk soal yang dipilih")
 			
-				let objekPesan = await dapatkanPesan(nomor))
+				let objekPesan = await dapatkanPesan(nomor)
 				if(objekPesan.pesan.toLowerCase() == r[2].toLowerCase()){
 					let gambar=drawJawaban(canvas, rangesTeka, r[0], r[2])
 					
