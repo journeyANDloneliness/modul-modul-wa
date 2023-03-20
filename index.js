@@ -1,3 +1,15 @@
-export function ABCD(){
-	console.log("ABCD")
-}
+
+import {latihanPilihanGanda} from "./latihanPilihanGanda.js"
+
+import {koneksiExcel, doc} from "./koneksiExcel.js"
+import {gambarRanking} from "./gambarRanking.js"
+import {tekaTekiSilang} from "./tekaTekiSilang.js"
+import {ularTangga} from "./ularTangga.js"
+
+
+export {latihanPilihanGanda,
+			ularTangga,
+			 tekaTekiSilang,
+			 koneksiExcel,
+			 doc,
+			 gambarRanking}
