@@ -6,8 +6,8 @@ import {doc}  from "./koneksiExcel.js"
 
 	
 
-export async function latihanPilihanGanda({objekPesan, nomor}){
-	let sheet = doc.sheetsByTitle["soal1"]; 
+export async function latihanPilihanGanda({objekPesan, nomor, soal}){
+	let sheet = doc.sheetsByTitle[soal]; 
 	let rows = await sheet.getRows();
 	let soal_soal = rows.map((v,i)=>{
 		return {
