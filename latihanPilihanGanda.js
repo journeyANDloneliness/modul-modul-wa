@@ -59,7 +59,7 @@ export async function latihanPilihanGanda({objekPesan, nomor, soal}){
 
 	sheet = doc.sheetsByTitle["nilai_siswa"]; 
 	rows = await sheet.getRows();
-	let siswa = rows.find(v=>v.nama == "Mazamat")
+	let siswa = rows.find(v=>v.nama == objekPesan.contact.name)
 	siswa.nilai_latihan1 = jumlahBenar
 	await siswa.save()
 	
