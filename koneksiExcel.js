@@ -3,10 +3,10 @@ import {google} from 'googleapis';
 const sheets = google.sheets('v4');
 export let auth
 export let doc
-export async function koneksiExcel(){
+export async function koneksiExcel(id){
 	// Initialize the sheet - doc ID is the long id in the sheets URL
 	
-	doc = new GoogleSpreadsheet('1tVw4qmPoqEP_SKkVqz5EukgeDCzoVMItw8TtgdY4ef8');
+	doc = new GoogleSpreadsheet(id ?? '1tVw4qmPoqEP_SKkVqz5EukgeDCzoVMItw8TtgdY4ef8');
 	
 	// Initialize Auth - see https://theoephraim.github.io/node-google-spreadsheet/#/getting-started/authentication
 	await doc.useServiceAccountAuth({
