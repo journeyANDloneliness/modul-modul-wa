@@ -54,14 +54,18 @@ export async function latihanPilihanGanda({objekPesan, nomor, soal}){
 		
 		
 	}
-
 	jawabPesan("ini hasil anda:\n"+hasil.join("\n"),{noLoading:false})
 
 	sheet = doc.sheetsByTitle["nilai_siswa"]; 
 	rows = await sheet.getRows();
 	let siswa = rows.find(v=>v.nama == objekPesan.contact.name)
-	siswa.nilai_latihan1 = jumlahBenar
-	await siswa.save()
+	if(siswa){
+			siswa.nilai_latihan1 = jumlahBenar
+			await siswa.save()
+	}else{
+		await sheet.addRow({nama:objekPesan.contact.name,
+								 nilai_latihan1:jumlahBenar })
+	}
 	
 }
 						
