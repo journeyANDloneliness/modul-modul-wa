@@ -54,7 +54,6 @@ export async function latihanPilihanGanda({objekPesan, nomor, soal}){
 		
 		
 	}
-
 	jawabPesan("ini hasil anda:\n"+hasil.join("\n"),{noLoading:false})
 
 	sheet = doc.sheetsByTitle["nilai_siswa"]; 
@@ -67,7 +66,6 @@ export async function latihanPilihanGanda({objekPesan, nomor, soal}){
 		await sheet.addRow({nama:objekPesan.contact.name,
 								 nilai_latihan1:jumlahBenar })
 	}
-
 	
 }
 						
