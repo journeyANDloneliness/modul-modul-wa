@@ -17,9 +17,9 @@ export async function materi({objekPesan, nomor, materiSheetName, awal}){
 		
 		let foundMenu=menu.find(v=>v.includes(objekPesan.text))
 		if(foundMenu){
-			console.log("found menu", foundMenu.substr(3))
-			if(objekPesan.text.includes("kembali"))
+			if(foundMenu.includes("kembali"))
 				foundMenu = "---"+foundMateri.asal
+			console.log("found menu", foundMenu.substr(3))
 			
 			foundMateri = materi.find(v=>foundMenu.substr(3).toLowerCase().replace(/[^a-zA-Z0-9]/g, "") == v.judul.toLowerCase().replace(/[^a-zA-Z0-9]/g, ""))
 			if(foundMateri ){
