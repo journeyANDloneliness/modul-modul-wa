@@ -13,7 +13,7 @@ export async function materi({objekPesan, nomor, materiSheetName, awal}){
 
 	while (true) {
 		
-		let objekPesan = dapatkanPesan()
+		let objekPesan = await dapatkanPesan()
 		let foundMenu=menu.find(v=>v.includes(objekPesan.text))
 		if(foundMenu){
 			let foundMateri = materi.find(v=>foundMenu.substr(2) == v.judul.toLowerCase())
@@ -30,7 +30,7 @@ export async function materi({objekPesan, nomor, materiSheetName, awal}){
 
 function makeMenu(str) {
 	return str.menu.split("\n")
-		.map(v=>v.toLowerCase().replace(/[^a-zA-Z0-9]/g, ""))
+		.map(v=>v.toLowerCase().replace(/[^a-zA-Z0-9\.]/g, ""))
 }
 
 export default materi
