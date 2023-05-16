@@ -1,8 +1,8 @@
 import {dapatkanPesan, jawabPesan, abaikanPesan} from "auto-wa-rapiwha"
 
 import {doc}  from "./koneksiExcel.js"
-export async function materi({objekPesan, nomor, materi, awal}){
-	let sheet = doc.sheetsByTitle[materi]; 
+export async function materi({objekPesan, nomor, materiSheetName, awal}){
+	let sheet = doc.sheetsByTitle[materiSheetName]; 
 	let materi = await sheet.getRows();
 	let welcome = materi.find(v=>v.judul == awal)
 	let menu = makeMenu(welcome)
