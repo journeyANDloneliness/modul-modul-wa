@@ -10,13 +10,17 @@ export async function materi({objekPesan, nomor, materiSheetName, awal}){
 	await jawabPesan([
 		{	pesan: welcome.deskripsi, opsi:{daftar:menu }}
 									])
-
+	let foundMateri = welcome
 	while (true) {
 		
 		let objekPesan = await dapatkanPesan()
+		
 		let foundMenu=menu.find(v=>v.includes(objekPesan.text))
 		if(foundMenu){
-			let foundMateri = materi.find(v=>foundMenu.substr(2) == v.judul.toLowerCase())
+			
+			if(objekPesan.text.includes("kembali"))
+				foundMenu = "--"+foundMateri.asal
+			foundMateri = materi.find(v=>foundMenu.substr(2) == v.judul.toLowerCase())
 			if(foundMateri ){
 					menu = makeMenu(foundMateri.menu)
 					await jawabPesan(foundMateri.deskripsi, {daftar:menu})
