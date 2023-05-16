@@ -12,7 +12,8 @@ export async function latihanPilihanGanda({objekPesan, nomor, soal}){
 	let soal_soal = rows.map((v,i)=>{
 		return {
 				pesan: v.nomor+" "+v.soal,
-				opsi:{tombol: [v.a, v.b, v.c, v.d]},
+				opsi:{daftar: [v.a, v.b, v.c, v.d]},
+				buttonText:"pilihan ganda",
 				jawabanBenar:v.jawabanBenar
 			}
 	})

@@ -44,13 +44,13 @@ export async function tekaTekiSilang({objekPesan, nomor}) {
 
 	const base64 = canvas.toDataURL();
 	let rangesSoal = await sheetGetRange("teka-teki!M2:O11")
-	let tombol=[]
-	let soal={pesan:"pertanyaan:",opsi:{tombol}}
+	let daftar=[]
+	let soal={pesan:"pertanyaan:",opsi:{daftar, buttonText:"lihat pertanyan"}}
 	let jumlahSoal=0
 	rangesSoal.forEach((r,i)=>{
 			if(r[1]){
 				jumlahSoal++
-				tombol.push(r[0]+". "+ r[1])
+				daftar.push(r[0]+". "+ r[1])
 			}
 	})
 	
@@ -62,16 +62,16 @@ export async function tekaTekiSilang({objekPesan, nomor}) {
 		{pesan:"ini adalah teka-teki silang untuk hari ini"},
 		{pesan:"hello", opsi:{gambar:base64}},
 		soal,
-		{pesan:`peraturanya: 
+		{pesan:`*peraturanya*: 
 _________________________________________
->> 	klik tombol yang mana pertanyaan yang mau dijawab kemudian 
+•  	klik daftar yang mana pertanyaan yang mau dijawab kemudian 
 	pesan kamu 	selanjutnya adalah jawaban kamu.
 
->>  tekan tombol konfirmasi ini jika sudah selesai, 
- 	kamu tetap bisa tekan tombol konfirmasi meski belum mengisi
+•  tekan tombol konfirmasi ini jika sudah selesai, 
+ 	kamu tetap bisa tekan tombol  konfirmasi meski belum mengisi
 	semua jawaban karena mungkin masih terlalu sulit untukmu.
  
->> 	konfirmasi jawaban hanya bisa dilakukan selbelum tanggal:
+• 	konfirmasi jawaban hanya bisa dilakukan selbelum tanggal:
 		jika kamu berhasil menjawab semua pertanyaan jawaban akan otomatis 
 	disimpan dan nilai kamu bertambah`,
 		 opsi:{tombol:["konfirmasi jawaban"]}}
@@ -102,10 +102,10 @@ _________________________________________
 						break
 					}else{
 						jawabanBenar.push(r[0])
-						soal.opsi.tombol= tombol.filter((v,i)=>{
+						soal.opsi.daftar= daftar.filter((v,i)=>{
 							return v.split(". ")[0] != r[0]
 						})
-						tombol=soal.opsi.tombol
+						daftar=soal.opsi.daftar
 					}
 					
 					if(jawabanBenar.length == jumlahSoal){

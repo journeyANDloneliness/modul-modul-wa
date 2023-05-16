@@ -17,7 +17,7 @@ export async function koneksiExcel(id){
 	});
 	
 	await doc.loadInfo(); // loads document properties and worksheets
-	console.log("berhasil menhubungkan ke document sheet bernama :"+doc.title);
+	console.log("berhasil menghubungkan ke document sheet bernama :"+doc.title);
 
 	
 	auth = new google.auth.GoogleAuth({
