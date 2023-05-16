@@ -21,7 +21,7 @@ export async function materi({objekPesan, nomor, materiSheetName, awal}){
 			if(objekPesan.text.includes("kembali"))
 				foundMenu = "---"+foundMateri.asal
 			
-			foundMateri = materi.find(v=>foundMenu.substr(3).toLowerCase() == v.judul.toLowerCase())
+			foundMateri = materi.find(v=>foundMenu.substr(3).toLowerCase().replace(/[^a-zA-Z0-9]/g, "") == v.judul.toLowerCase().replace(/[^a-zA-Z0-9]/g, ""))
 			if(foundMateri ){
 					menu = makeMenu(foundMateri.menu)
 					await jawabPesan(foundMateri.deskripsi, {daftar:menu})
