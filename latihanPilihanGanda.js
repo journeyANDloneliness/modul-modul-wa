@@ -38,19 +38,22 @@ export async function latihanPilihanGanda({objekPesan, nomor, soal}){
 				//console.log( v.nomor+" "+v.soal , objekPesan.quotedMessage.body)
 				return objekPesan.quotedMessage.body.includes( v.nomor+" "+v.soal )
 			})
-		
-		if(	objekPesan.pesan.startsWith(soal?.jawabanBenar )){
-			hasil[parseInt(soal.nomor)] = soal.nomor+" jawaban anda benar ✅ untuk :"+objekPesan.pesan
-			jumlahBenar++
-		}
-		
-		else if(objekPesan.pesan == "konfirmasi nilai"){
+		if(soal){
+			if(	objekPesan.pesan.startsWith(soal?.jawabanBenar )){
+				hasil[parseInt(soal.nomor)] = soal.nomor+" jawaban anda benar ✅ untuk :"+objekPesan.pesan
+				jumlahBenar++
+			}
 			
-			break
-		}
-		else{
-			hasil[parseInt(soal.nomor)] = soal.nomor+" jawaban anda salah ❌ untuk :"+objekPesan.pesan
-			
+			else if(objekPesan.pesan == "konfirmasi nilai"){
+				
+				break
+			}
+			else{
+				hasil[parseInt(soal.nomor)] = soal.nomor+" jawaban anda salah ❌ untuk :"+objekPesan.pesan
+				
+			}
+		}else{
+			jawabPesan("reply lah soal yang hendak dijawab terlebih dahulu")
 		}
 		
 		
