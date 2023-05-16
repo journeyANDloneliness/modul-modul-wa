@@ -89,7 +89,7 @@ _________________________________________
 			break
 		}
 		for(let r of rangesSoal){
-			if(objekPesan.pesan == r[0]+". "+r[1]){
+			if(objekPesan.pesan == r[0]+". "+r[1] || objekPesan.pesan == r[0] ){
 				jawabPesan("silahkan jawab pertanyaan untuk soal yang dipilih")
 			
 				let objekPesan = await dapatkanPesan(nomor)
