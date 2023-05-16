@@ -3,7 +3,7 @@ import {dapatkanPesan, jawabPesan, abaikanPesan} from "auto-wa-rapiwha"
 import {doc}  from "./koneksiExcel.js"
 export async function materi({objekPesan, nomor, materiSheetName, awal}){
 	let sheet = doc.sheetsByTitle[materiSheetName]; 
-	let materi = await sheet.getRows)
+	let materi = await sheet.getRows()
 	let welcome = materi.find(v=>v.judul.toLowerCase() == awal)
 	let menu = makeMenu(welcome.menu)
 //console.log(output); // Output: Hello123World)
