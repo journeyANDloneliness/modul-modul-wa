@@ -4,9 +4,9 @@ import {doc}  from "./koneksiExcel.js"
 export async function materi({objekPesan, nomor, materiSheetName, awal}){
 	let sheet = doc.sheetsByTitle[materiSheetName]; 
 	let materi = await sheet.getRows();
-	let welcome = materi.find(v=>v.judul == awal)
+	let welcome = materi.find(v=>v.judul.toLowerCase() == awal)
 	let menu = makeMenu(welcome)
-console.log(output); // Output: Hello123World)
+//console.log(output); // Output: Hello123World)
 	await jawabPesan([
 		{	pesan: welcome.deskripsi, opsi:{daftar:menu }}
 									])
