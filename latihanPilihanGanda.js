@@ -39,7 +39,8 @@ export async function latihanPilihanGanda({objekPesan, nomor, soal}){
 				return v.nomor+" "+v.soal == objekPesan.quotedMessage.body
 			})
 		
-		if(objekPesan.pesan.includes(soal?.jawabanBenar) ){
+		if(objekPesan.pesan.includes(soal?.jawabanBenar ) ||
+			objekPesan.pesan.startWith(soal?.jawabanBenar )){
 			hasil[parseInt(soal.nomor)] = soal.nomor+" jawaban anda benar ✅ untuk :"+objekPesan.pesan
 			jumlahBenar++
 		}
