@@ -36,7 +36,7 @@ export async function latihanPilihanGanda({objekPesan, nomor, soal}){
 		let soal = rows
 			.find(v=>{
 				//console.log( v.nomor+" "+v.soal , objekPesan.quotedMessage.body)
-				return objekPesan.quotedMessage?.body.includes( v.nomor+" "+v.soal )
+				return objekPesan.quotedMessage?.body?.includes( v.nomor+" "+v.soal )
 			})
 		if(soal){
 			if(	objekPesan.pesan.startsWith(soal?.jawabanBenar )){
