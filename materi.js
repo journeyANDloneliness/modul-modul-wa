@@ -3,7 +3,7 @@ import {dapatkanPesan, jawabPesan, abaikanPesan} from "auto-wa-rapiwha"
 import {doc}  from "./koneksiExcel.js"
 export async function materi({objekPesan, nomor, materiSheetName, awal}){
 	let sheet = doc.sheetsByTitle[materiSheetName]; 
-	let materi = await sheet.getRows();
+	let materi = await sheet.getRows)
 	let welcome = materi.find(v=>v.judul.toLowerCase() == awal)
 	let menu = makeMenu(welcome.menu)
 //console.log(output); // Output: Hello123World)
@@ -19,8 +19,8 @@ export async function materi({objekPesan, nomor, materiSheetName, awal}){
 		if(foundMenu){
 			
 			if(objekPesan.text.includes("kembali"))
-				foundMenu = "--"+foundMateri.asal
-			foundMateri = materi.find(v=>foundMenu.substr(2) == v.judul.toLowerCase())
+				foundMenu = "---"+foundMateri.asal
+			foundMateri = materi.find(v=>foundMenu.substr(3) == v.judul.toLowerCase())
 			if(foundMateri ){
 					menu = makeMenu(foundMateri.menu)
 					await jawabPesan(foundMateri.deskripsi, {daftar:menu})
@@ -34,7 +34,7 @@ export async function materi({objekPesan, nomor, materiSheetName, awal}){
 
 function makeMenu(str) {
 	return str.split("\n")
-		.map(v=>v.toLowerCase().replace(/[^a-zA-Z0-9\.]/g, ""))
+		.map(v=>v.toLowerCase())
 }
 
 export default materi
