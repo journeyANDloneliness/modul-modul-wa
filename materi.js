@@ -5,7 +5,7 @@ export async function materi({objekPesan, nomor, materiSheetName, awal}){
 	let sheet = doc.sheetsByTitle[materiSheetName]; 
 	let materi = await sheet.getRows();
 	let welcome = materi.find(v=>v.judul.toLowerCase() == awal)
-	let menu = makeMenu(welcome)
+	let menu = makeMenu(welcome.menu)
 //console.log(output); // Output: Hello123World)
 	await jawabPesan([
 		{	pesan: welcome.deskripsi, opsi:{daftar:menu }}
@@ -29,7 +29,7 @@ export async function materi({objekPesan, nomor, materiSheetName, awal}){
 }
 
 function makeMenu(str) {
-	return str.menu.split("\n")
+	return str.split("\n")
 		.map(v=>v.toLowerCase().replace(/[^a-zA-Z0-9\.]/g, ""))
 }
 
