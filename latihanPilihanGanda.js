@@ -17,6 +17,7 @@ export async function latihanPilihanGanda({objekPesan, nomor, soal}){
 				jawabanBenar:v.jawabanBenar
 			}
 	})
+	//memastikan hanya  sheet dengan "jawaban benar colom" terisi saja yang diambil
 	soal_soal = soal_soal.filter(v=>v.jawabanBenar)
 	console.log(soal_soal)
 	let pesanDikirim = [...soal_soal]
@@ -44,7 +45,7 @@ export async function latihanPilihanGanda({objekPesan, nomor, soal}){
 				jumlahBenar++
 			}
 			
-			else if(objekPesan.pesan == "konfirmasi nilai"){
+			else if(["konfirmasi nilai","konfimasi","konfirm"].includes(objekPesan.pesan.toLowerCase() )){
 				
 				break
 			}
@@ -61,7 +62,7 @@ export async function latihanPilihanGanda({objekPesan, nomor, soal}){
 		
 		
 	}
-	jawabPesan("ini hasil anda:\n"+hasil.join("\n"),{noLoading:false})
+	jawabPesan("ini hasil anda:\n"+hasil.map((v,ind)=>v?v:"anda mengosongkan soal ke-"+ind).join("\n"),{noLoading:false})
 
 	sheet = doc.sheetsByTitle["nilai_siswa"]; 
 	rows = await sheet.getRows();
