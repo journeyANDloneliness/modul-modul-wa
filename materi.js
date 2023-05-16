@@ -1,7 +1,7 @@
 import {dapatkanPesan, jawabPesan, abaikanPesan} from "auto-wa-rapiwha"
 
 import {doc}  from "./koneksiExcel.js"
-export async function latihanPilihanGanda({objekPesan, nomor, materi, awal}){
+export async function materi({objekPesan, nomor, materi, awal}){
 	let sheet = doc.sheetsByTitle[materi]; 
 	let materi = await sheet.getRows();
 	let welcome = materi.find(v=>v.judul == awal)
@@ -33,3 +33,4 @@ function makeMenu(str) {
 		.map(v=>v.toLowerCase().replace(/[^a-zA-Z0-9]/g, ""))
 }
 
+export default materi
