@@ -17,9 +17,13 @@ export async function materi({objekPesan, nomor, materiSheetName, awal}){
 		
 		let foundMenu=menu.find(v=>v.includes(objekPesan.text))
 		if(foundMenu){
-			if(foundMenu.includes("kembali"))
+			if(foundMenu.includes("kembali")){
+				if(foundMateri.asal == "home"){
+					return
+				}
 				foundMenu = "---"+foundMateri.asal
-			
+				
+			}
 			else if(foundMenu.includes("home")){
 				
 				return 
@@ -29,7 +33,9 @@ export async function materi({objekPesan, nomor, materiSheetName, awal}){
 			foundMateri = materi.find(v=>foundMenu.substr(3).toLowerCase().replace(/[^a-zA-Z0-9]/g, "") == v.judul.toLowerCase().replace(/[^a-zA-Z0-9]/g, ""))
 			if(foundMateri ){
 					menu = makeMenu(foundMateri.menu)
-					await jawabPesan(foundMateri.deskripsi, {daftar:menu})
+					await jawabPesan(foundMateri.deskripsi, 
+													 {daftar:menu,																									one_time_keyboard: true,
+													 multi: true})
 			}else{
 				await jawabPesan("maaf belum tersedia materi yang dimaksud")
 			}
