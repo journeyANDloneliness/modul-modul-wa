@@ -11,7 +11,7 @@ export async function materi({objekPesan, nomor, materiSheetName, awal}){
 		{	pesan: welcome.deskripsi, opsi:{daftar:menu, multi:true,one_time_keyboard: true }}
 									]
 	if(welcome.url){
-		pesan.unshift({	pesan: "gambar", opsi:{gambar:
+		pesanDikirim.unshift({	pesan: "gambar", opsi:{gambar:
 		{url:welcome.url} }})
 	}
 		
@@ -45,7 +45,7 @@ export async function materi({objekPesan, nomor, materiSheetName, awal}){
 													 multi: true}}
 													]
 					if(foundMateri.url){
-						pesan.unshift({	pesan: "gambar", opsi:{gambar:
+						pesanDikirim.unshift({	pesan: "gambar", opsi:{gambar:
 						{url:foundMateri.url} }})
 					}
 					await jawabPesan(pesanDikirim)
