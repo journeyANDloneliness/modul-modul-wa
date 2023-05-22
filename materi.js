@@ -7,9 +7,15 @@ export async function materi({objekPesan, nomor, materiSheetName, awal}){
 	let welcome = materi.find(v=>v.judul.toLowerCase() == awal)
 	let menu = makeMenu(welcome.menu)
 //console.log(output); // Output: Hello123World)
-	await jawabPesan([
-		{	pesan: welcome.deskripsi, opsi:{daftar:menu }}
-									])
+	let pesanDikirim=	[
+		{	pesan: welcome.deskripsi, opsi:{daftar:menu, multi:true,one_time_keyboard: true }}
+									]
+	if(welcome.url){
+		pesan.unshift({	pesan: "gambar", opsi:{gambar:
+		{url:welcome.url} }})
+	}
+		
+	await jawabPesan(pesanDikirim)
 	let foundMateri = welcome
 	while (true) {
 		
@@ -33,9 +39,16 @@ export async function materi({objekPesan, nomor, materiSheetName, awal}){
 			foundMateri = materi.find(v=>foundMenu.substr(3).toLowerCase().replace(/[^a-zA-Z0-9]/g, "") == v.judul.toLowerCase().replace(/[^a-zA-Z0-9]/g, ""))
 			if(foundMateri ){
 					menu = makeMenu(foundMateri.menu)
-					await jawabPesan(foundMateri.deskripsi, 
-													 {daftar:menu,																									one_time_keyboard: true,
-													 multi: true})
+				let pesanDikirim=	[
+					{pesan: foundMateri.deskripsi, 
+													 opsi:{daftar:menu,																									one_time_keyboard: true,
+													 multi: true}}
+													]
+					if(foundMateri.url){
+						pesan.unshift({	pesan: "gambar", opsi:{gambar:
+						{url:foundMateri.url} }})
+					}
+					await jawabPesan(pesanDikirim)
 			}else{
 				await jawabPesan("maaf belum tersedia materi yang dimaksud")
 			}
