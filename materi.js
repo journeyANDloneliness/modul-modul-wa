@@ -19,7 +19,7 @@ export async function materi({objekPesan, nomor, materiSheetName, awal}){
 	let foundMateri = welcome
 	while (true) {
 		
-		let objekPesan = await dapatkanPesan()
+		let objekPesan = await dapatkanPesan(nomor)
 		
 		let foundMenu=menu.find(v=>v.includes(objekPesan.text))
 		if(foundMenu){
