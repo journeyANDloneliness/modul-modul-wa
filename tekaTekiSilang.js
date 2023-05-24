@@ -76,7 +76,7 @@ _________________________________________
 	disimpan dan nilai kamu bertambah`,
 		 opsi:{tombol:["konfirmasi jawaban"]}}
 	]
-	jawabPesan(pesan)
+	jawabPesan(pesan, null, nomor)
 	let jawabanBenar=[]
 	out:
 	while (true) {
@@ -84,13 +84,13 @@ _________________________________________
 
 		if(objekPesan.pesan == "konfirmasi jawaban"){
 			jawabPesan(`kamu keluar dari sesi teka-teki silang.
-								 jawaban kamu terkonfoirmasi dan disimpan. tetapi kamu masih bisa mengulanginya lagi`)
+								 jawaban kamu terkonfoirmasi dan disimpan. tetapi kamu masih bisa mengulanginya lagi`, null, nomor)
 			
 			break
 		}
 		for(let r of rangesSoal){
 			if(objekPesan.pesan == r[0]+". "+r[1] || objekPesan.pesan == r[0] ){
-				jawabPesan("silahkan jawab pertanyaan untuk soal yang dipilih")
+				jawabPesan("silahkan jawab pertanyaan untuk soal yang dipilih", null, nomor)
 			
 				let objekPesan = await dapatkanPesan(nomor)
 				if(objekPesan.pesan.toLowerCase() == r[2].toLowerCase()){
@@ -98,7 +98,7 @@ _________________________________________
 					
 					
 					if(jawabanBenar.includes(r[0])){
-						jawabPesan([{pesan:"kamu sudah menjawab pertanyaan ini"},soal])
+						jawabPesan([{pesan:"kamu sudah menjawab pertanyaan ini"},soal], null, nomor)
 						break
 					}else{
 						jawabanBenar.push(r[0])
@@ -115,25 +115,25 @@ _________________________________________
 	selamat kamu berhasil 
  				menyelsaikan 
 	teka teki silang ini
-🎉🎉🎉🎉🎉🎉🎉🎉🎉🎉🎉🎉`}])
+🎉🎉🎉🎉🎉🎉🎉🎉🎉🎉🎉🎉`}], null, nomor)
 						break out
 					}
 
 					else{
 					
-						jawabPesan([{pesan:"benar ✅"},{opsi:{gambar}},soal])
+						jawabPesan([{pesan:"benar ✅"},{opsi:{gambar}},soal], null, nomor)
 					}
 					
 
 				}else{
-					jawabPesan([{pesan:"maaf jawaban kamu masih salah ❌ "},soal])
+					jawabPesan([{pesan:"maaf jawaban kamu masih salah ❌ "},soal], null, nomor)
 				}
 				break
 				
 				
 			}
 		}
-		jawabPesan("maaf. tidak ada pertanyaan seperti itu di teka-teki silang ini")
+		jawabPesan("maaf. tidak ada pertanyaan seperti itu di teka-teki silang ini", null, nomor)
 	}
 	
 }

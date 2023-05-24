@@ -15,7 +15,7 @@ export async function materi({objekPesan, nomor, materiSheetName, awal}){
 		{url:welcome.url} }})
 	}
 		
-	await jawabPesan(pesanDikirim)
+	await jawabPesan(pesanDikirim, null, nomor)
 	let foundMateri = welcome
 	while (true) {
 		
@@ -48,9 +48,9 @@ export async function materi({objekPesan, nomor, materiSheetName, awal}){
 						pesanDikirim.unshift({	pesan: "gambar", opsi:{gambar:
 						{url:foundMateri.url} }})
 					}
-					await jawabPesan(pesanDikirim)
+					await jawabPesan(pesanDikirim, null, nomor)
 			}else{
-				await jawabPesan("maaf belum tersedia materi yang dimaksud")
+				await jawabPesan("maaf belum tersedia materi yang dimaksud", null, nomor)
 			}
 		}
 	}

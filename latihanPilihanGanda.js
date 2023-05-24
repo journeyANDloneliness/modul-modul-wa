@@ -24,7 +24,7 @@ export async function latihanPilihanGanda({objekPesan, nomor, soal}){
 	pesanDikirim.push({pesan:`tombol paling terakhir ditekan akan menjadi nilai mu.
  nilai akan diberikan setalah kamu klik tombol konfirmasi nilai`,opsi:{
 		tombol:["konfirmasi nilai"]}})
-	await jawabPesan(pesanDikirim)
+	await jawabPesan(pesanDikirim, null, nomor)
 	
 	let hasil = []
 	
@@ -57,12 +57,12 @@ export async function latihanPilihanGanda({objekPesan, nomor, soal}){
 				
 				break
 		}else{
-			jawabPesan("reply lah soal yang hendak dijawab terlebih dahulu")
+			jawabPesan("reply lah soal yang hendak dijawab terlebih dahulu",null,nomor)
 		}
 		
 		
 	}
-	jawabPesan("ini hasil anda:\n"+hasil.map((v,ind)=>v?v:"anda mengosongkan soal ke-"+ind).join("\n"),{noLoading:false})
+	jawabPesan("ini hasil anda:\n"+hasil.map((v,ind)=>v?v:"anda mengosongkan soal ke-"+ind).join("\n"),{noLoading:false}, nomor)
 
 	sheet = doc.sheetsByTitle["nilai_siswa"]; 
 	rows = await sheet.getRows();
