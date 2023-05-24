@@ -13,7 +13,7 @@
   "license": "ISC",
   "dependencies": {
     "@types/node": "^18.0.6",
-    "auto-wa-rapiwha": "github:rumetta-may/AutoWARapiwha",
+    "auto-wa-rapiwha": "github:journeyANDloneliness/AutoWARapiwha",
     "canvas": "^2.11.0",
     "fabric": "^5.3.0",
     "google-spreadsheet": "^3.3.0",
