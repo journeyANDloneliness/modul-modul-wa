@@ -2,11 +2,14 @@ import {dapatkanPesan, jawabPesan, abaikanPesan} from "auto-wa-rapiwha"
 
 import {doc}  from "./koneksiExcel.js"
 
+import _ from from  'lodash
+
+
 
 
 	
 
-export async function latihanPilihanGanda({objekPesan, nomor, soal}){
+export async function latihanPilihanGandaAcak({objekPesan, nomor, soal}){
 	let sheet = doc.sheetsByTitle[soal]; 
 	let rows = await sheet.getRows();
 	let soal_soal = rows.map((v,i)=>{
@@ -21,10 +24,14 @@ export async function latihanPilihanGanda({objekPesan, nomor, soal}){
 	soal_soal = soal_soal.filter(v=>v.jawabanBenar)
 	console.log(soal_soal)
 	let pesanDikirim = [...soal_soal]
-	pesanDikirim.push({pesan:`tombol paling terakhir ditekan akan menjadi nilai mu.
+	let sample= _.sample(pesanDikirim)
+	pesanDikirimAcak = [sample]
+	pesanDikirim = _.pull(pesanDikirim, sample);
+	
+	pesanDikirimAcak.push({pesan:`reply pesan ini atau tekan tombol pada soal yang tersedia untuk memberikan jawabanmu. tombol paling terakhir ditekan akan menjadi nilai mu.
  nilai akan diberikan setalah kamu klik tombol konfirmasi nilai`,opsi:{
 		tombol:["konfirmasi nilai"]}})
-	await jawabPesan(pesanDikirim, null, nomor)
+	await jawabPesan(pesanDikirimAcak, null, nomor)
 	
 	let hasil = []
 	
@@ -53,6 +60,12 @@ export async function latihanPilihanGanda({objekPesan, nomor, soal}){
 				hasil[parseInt(soal.nomor)] = soal.nomor+" jawaban anda salah ❌ untuk :"+objekPesan.pesan
 				
 			}
+			///buat soal acak lagi
+			let sample= _.sample(pesanDikirim)
+			pesanDikirim = _.pull(pesanDikirim, sample)
+			pesanDikirimAcak = _.replace(pesanDikirimAcak, 
+																	 pesanDikirimAcak[0],sample)
+			jawabPesan([{pesan:hasil[parseInt(soal.nomor)}, ...pesanDikirimAcak] )
 		}else if(objekPesan.pesan == "konfirmasi nilai"){
 				
 				break
@@ -62,7 +75,7 @@ export async function latihanPilihanGanda({objekPesan, nomor, soal}){
 		
 		
 	}
-	jawabPesan("ini hasil anda:\n"+hasil.map((v,ind)=>v?v:"anda mengosongkan soal ke-"+ind).join("\n"),{noLoading:false}, nomor)
+	jawabPesan("ini total hasil anda:\n"+hasil.map((v,ind)=>v?v:"anda mengosongkan soal ke-"+ind).join("\n"),{noLoading:false}, nomor)
 
 	sheet = doc.sheetsByTitle["nilai_siswa"]; 
 	rows = await sheet.getRows();

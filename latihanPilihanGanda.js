@@ -21,7 +21,7 @@ export async function latihanPilihanGanda({objekPesan, nomor, soal}){
 	soal_soal = soal_soal.filter(v=>v.jawabanBenar)
 	console.log(soal_soal)
 	let pesanDikirim = [...soal_soal]
-	pesanDikirim.push({pesan:`tombol paling terakhir ditekan akan menjadi nilai mu.
+	pesanDikirim.push({pesan:`reply pesan ini atau tekan tombol pada soal yang tersedia untuk memberikan jawabanmu. tombol paling terakhir ditekan akan menjadi nilai mu.
  nilai akan diberikan setalah kamu klik tombol konfirmasi nilai`,opsi:{
 		tombol:["konfirmasi nilai"]}})
 	await jawabPesan(pesanDikirim, null, nomor)
