@@ -122,12 +122,12 @@ _________________________________________
 					else{
 					
 						jawabPesan([{pesan:"benar ✅"},{opsi:{gambar}},soal
-												,{pesan:"ketik konfirmasi jawaban jika merasa sudah selesai atau klik tombol ini",opsi:{daftar:["konfirmasi jawaban"]}}], null, nomor)
+												,{pesan:"ketik **'konfirmasi jawaban'** jika merasa sudah selesai atau klik tombol ini",opsi:{daftar:["konfirmasi jawaban"]}}], null, nomor)
 					}
 					
 
 				}else{
-					jawabPesan([{pesan:"maaf jawaban kamu masih salah ❌ "},soal, {pesan:"ketik konfirmasi jawaban jika merasa sudah selesai atau klik tombol ini",opsi:{daftar:["konfirmasi jawaban"]}}], null, nomor)
+					jawabPesan([{pesan:"maaf jawaban kamu masih salah ❌ "},soal, {pesan:"ketik **'konfirmasi jawaban'** jika merasa sudah selesai atau klik tombol ini",opsi:{daftar:["konfirmasi jawaban"]}}], null, nomor)
 				}
 				break
 				
