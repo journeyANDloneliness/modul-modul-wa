@@ -9,11 +9,11 @@ import {dapatkanPesan, jawabPesan, abaikanPesan} from "auto-wa-rapiwha"
 
 export async function tekaTekiSilang({objekPesan, nomor}) {
 
-	const canvas = new fabric.StaticCanvas(null, { width: 200, height: 200 });
+	const canvas = new fabric.StaticCanvas(null, { width: 200, height: 220 });
 
 	// Create a new Fabric.js rectangle object
 
-	let rangesTeka = await sheetGetRange("teka-teki!A1:J10")
+	let rangesTeka = await sheetGetRange("teka-teki!A1:J11")
 	rangesTeka.forEach((r,i)=>{
 		r.forEach((c,ii)=>{
 			if(c){
