@@ -15,5 +15,5 @@ export {latihanPilihanGanda,
 			 koneksiExcel,
 			 doc,
 				materi,
-			 gambarRanking.
+			 gambarRanking,
 			 latihanPilihanGandaAcak}
