@@ -2,8 +2,7 @@ import {dapatkanPesan, jawabPesan, abaikanPesan} from "auto-wa-rapiwha"
 
 import {doc}  from "./koneksiExcel.js"
 
-import _ from from  'lodash
-
+import _ from from  'lodash'
 
 
 
