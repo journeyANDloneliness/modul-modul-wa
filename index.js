@@ -1,6 +1,6 @@
 
 import {latihanPilihanGanda} from "./latihanPilihanGanda.js"
-import {latihanPilihanGandaAcak} from "./latihanPilihanGandaAcak.js"
+//import {latihanPilihanGandaAcak} from "./latihanPilihanGandaAcak.js"
 
 import {koneksiExcel, doc} from "./koneksiExcel.js"
 import {gambarRanking} from "./gambarRanking.js"
@@ -16,4 +16,4 @@ export {latihanPilihanGanda,
 			 doc,
 				materi,
 			 gambarRanking,
-			 latihanPilihanGandaAcak}
+			 }
