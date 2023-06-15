@@ -121,12 +121,13 @@ _________________________________________
 
 					else{
 					
-						jawabPesan([{pesan:"benar ✅"},{opsi:{gambar}},soal], null, nomor)
+						jawabPesan([{pesan:"benar ✅"},{opsi:{gambar}},soal
+												,{pesan:"ketik konfirmasi jawaban jika merasa sudah selesai atau klik tombol ini",opsi:{daftar:["konfirmasi jawaban"]}}], null, nomor)
 					}
 					
 
 				}else{
-					jawabPesan([{pesan:"maaf jawaban kamu masih salah ❌ "},soal], null, nomor)
+					jawabPesan([{pesan:"maaf jawaban kamu masih salah ❌ "},soal, {pesan:"ketik konfirmasi jawaban jika merasa sudah selesai atau klik tombol ini",opsi:{daftar:["konfirmasi jawaban"]}}], null, nomor)
 				}
 				break
 				
