@@ -15,5 +15,6 @@ export {latihanPilihanGanda,
 			 koneksiExcel,
 			 doc,
 				materi,
-			 gambarRanking,latihanPilihanGandaAcak
+			 gambarRanking,latihanPilihanGandaAcak,
+				sheetGetRange
 			 }
