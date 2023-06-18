@@ -1,8 +1,8 @@
 
 import {latihanPilihanGanda} from "./latihanPilihanGanda.js"
-//import {latihanPilihanGandaAcak} from "./latihanPilihanGandaAcak.js"
+import {latihanPilihanGandaAcak} from "./latihanPilihanGandaAcak.js"
 
-import {koneksiExcel, doc} from "./koneksiExcel.js"
+import {koneksiExcel, doc, sheetGetRange} from "./koneksiExcel.js"
 import {gambarRanking} from "./gambarRanking.js"
 import {tekaTekiSilang} from "./tekaTekiSilang.js"
 import {ularTangga} from "./ularTangga.js"
@@ -15,5 +15,5 @@ export {latihanPilihanGanda,
 			 koneksiExcel,
 			 doc,
 				materi,
-			 gambarRanking,
+			 gambarRanking,latihanPilihanGandaAcak
 			 }

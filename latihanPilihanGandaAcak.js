@@ -64,7 +64,7 @@ export async function latihanPilihanGandaAcak({objekPesan, nomor, soal}){
 			pesanDikirim = _.pull(pesanDikirim, sample)
 			pesanDikirimAcak = _.replace(pesanDikirimAcak, 
 																	 pesanDikirimAcak[0],sample)
-			jawabPesan([{pesan:hasil[parseInt(soal.nomor)}, ...pesanDikirimAcak] )
+			jawabPesan([{pesan:hasil[parseInt(soal.nomor)]}, ...pesanDikirimAcak] )
 		}else if(objekPesan.pesan == "konfirmasi nilai"){
 				
 				break
