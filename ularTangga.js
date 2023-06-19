@@ -55,7 +55,7 @@ export async function ularTangga(objekPesan, globalSiswa, nomor, myId) {
 			console.log("cccc")
 			//canvas.add(mladder)
 		}
-		globalSiswa.ularTangga.mainGenerated = true
+		//globalSiswa.ularTangga.mainGenerated = true
 	}
 	
 	const gambar = canvas.toDataURL();
@@ -65,9 +65,10 @@ export async function ularTangga(objekPesan, globalSiswa, nomor, myId) {
 	// 	image: gambar
 	// })
 	let pesan=[
+		{opsi:{gambar}},
 		{pesan:"ini adalah permainan ular tangga untuk hari ini!",
-		 opsi:{daftar:["1. mulai lempar dadu"]}},
-		{opsi:{gambar}}
+		 opsi:{daftar:["1. mulai **lempar dadu 🎲**"]}},
+		
 	]
 	jawabPesan(pesan, null, nomor)
 
@@ -90,12 +91,17 @@ export async function ularTangga(objekPesan, globalSiswa, nomor, myId) {
 														 canvas, shiftX,
 									pos:globalSiswa.ularTangga.data[myId].pos ,img, gambar,
 																							globalSiswa, commonNext, myId, nomor}
+	️⃣
+	let colorGrade["1️⃣⚫terlalu mudah⚫",
+								 "2️⃣🔵sangat mudah🔵",
+								 "3️⃣🟢mudah🟢","4️⃣🟡sedang🟡","5️⃣🟠sulit🟠","️6️⃣🔴sangat sulit🔴"]
 	while(true){
 		let objPesan = await dapatkanPesan(nomor)
 		
 		switch(true){
 				
 			case state == 0:
+				commonNext.opsi.daftar = ["1. lanjut giliran **lihat soal 📝**"]
 				if(!objPesan.text.startsWith(1)) break
 				let _pos0=_.random(1,6)
 				globalSiswa.ularTangga.data[myId].pos += _pos0
@@ -105,7 +111,7 @@ export async function ularTangga(objekPesan, globalSiswa, nomor, myId) {
 				let gbr2 = await drawPlayerPosAll(prop)
 				let check= await checkIfLadderOrSnake(prop)
 				pesan =[{opsi:{gambar: gbr2}},
-								{pesan:"anda mendapat dadu nomer "+ _pos0},
+								{pesan:" 🎲 anda mendapat dadu nomer **"+ _pos0+"** 🎲"},
 								check ? check.pesan: commonNext  ]
 				jawabPesan(pesan, null, nomor)
 				if(check) await check.fun()
@@ -113,10 +119,13 @@ export async function ularTangga(objekPesan, globalSiswa, nomor, myId) {
 				break
 				
 			case state == 1:
+				commonNext.opsi.daftar = ["1. lanjut giliran **lempar dadu 🎲**"]
+				
 				let soal=gradeGroups.map(v=>_.sample(v))
-				pesan =[{pesan:`pilihlah soal dibawah ini semakin sulit soal semakin
-					cepat kamu malangkah ke garis finish `}, 
-								{opsi:{daftar:soal.map((v,i)=>(i+1)+". "+ v.soal+"\n")}}
+				pesan =[{pesan:`📝 pilihlah soal dibawah ini.
+semakin sulit soal semakin
+banyak kamu malangkah!`,
+								opsi:{daftar:soal.map((v,i)=>colorGrade[i]+"\n"+(i+1)+". "+ v.soal+"\n")}}
 								]
 				jawabPesan(pesan, null, nomor)
 				while(true){
