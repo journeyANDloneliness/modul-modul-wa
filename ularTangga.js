@@ -69,7 +69,7 @@ export async function ularTangga(objekPesan, globalSiswa, nomor, myId) {
 		 opsi:{tombol:["mulai lempar dadu"]}},
 		{opsi:{gambar}}
 	]
-	jawabPesan(pesan)
+	jawabPesan(pesan, null, nomor)
 
 	let sheetsSoal= doc.sheetsByTitle["soal1"]
 	let rows= await sheetsSoal.getRows()
@@ -107,7 +107,7 @@ export async function ularTangga(objekPesan, globalSiswa, nomor, myId) {
 				pesan =[{opsi:{gambar: gbr2}},
 								{pesan:"anda mendapat dadu nomer "+ _pos0},
 								check ? check.pesan: commonNext  ]
-				jawabPesan(pesan)
+				jawabPesan(pesan, null, nomor)
 				if(check) await check.fun()
 				state=1
 				break
@@ -118,7 +118,7 @@ export async function ularTangga(objekPesan, globalSiswa, nomor, myId) {
 					cepat kamu malangkah ke garis finish `}, 
 								{opsi:{tombol:soal.map((v,i)=>(i+1)+". "+ v.soal+"\n")}}
 								]
-				jawabPesan(pesan)
+				jawabPesan(pesan, null, nomor)
 				while(true){
 					let objekPesan = await dapatkanPesan(nomor)
 					let _pos= parseInt(objekPesan.text.split(" ")[0])
@@ -127,7 +127,7 @@ export async function ularTangga(objekPesan, globalSiswa, nomor, myId) {
 					if(soalTerpilih){
 						pesan =[{pesan:soalTerpilih.soal, opsi:{tombol:[soalTerpilih.a,
 								soalTerpilih.b, soalTerpilih.c, soalTerpilih.d]}}]
-						jawabPesan(pesan)
+						jawabPesan(pesan, null, nomor)
 						
 						let objekPesan = await dapatkanPesan(nomor)
 						if(objekPesan.text == soalTerpilih.jawabanBenar.split(".")[0]){
@@ -144,7 +144,7 @@ export async function ularTangga(objekPesan, globalSiswa, nomor, myId) {
 											{opsi:{gambar: gbr2}},
 											{pesan:"anda berhasil dan melaju "+ _pos + " langkah"},
 							check ? check.pesan: commonNext  ]
-							jawabPesan(pesan)
+							jawabPesan(pesan, null, nomor)
 							if(check) await check.fun()
 						}else{
 							pesan =[{pesan:"maaf anda gagal  melangkah"},
@@ -157,14 +157,14 @@ export async function ularTangga(objekPesan, globalSiswa, nomor, myId) {
 							pesan =[{pesan:"anda gagal!. langkah anda dikurangi "+_pos+" langkah"},
 											{opsi:{gambar: gbr2}},
 											check ? check.pesan: commonNext  ]
-							jawabPesan(pesan)
+							jawabPesan(pesan, null, nomor)
 							if(check) await check.fun()
 						}
 						break
 						
 					}
 					else
-						jawabPesan([{pesan:"maaf tidak ada soal tersebut"}])
+						jawabPesan([{pesan:"maaf tidak ada soal tersebut"}], null, nomor)
 					
 				}
 				state=0
@@ -188,7 +188,7 @@ async function checkIfFinish({ladder, snake,soal,
 				top: 200 ,
 			}))
 		jawabPesan([{opsi:{gambar:canvas.toDataURL()}},
-											{pesan:"SELAMAT! kamu berhasil!"}])
+											{pesan:"SELAMAT! kamu berhasil!"}], null, nomor)
 		return true
 	}
 }
@@ -210,9 +210,9 @@ function checkIfLadderOrSnake({ladder, snake,soal,
 														pos:globalSiswa.ularTangga.data[myId].pos ,img, gambar, 
 																					globalSiswa, myId})
 					jawabPesan([{opsi:{gambar:gbr}},
-											{pesan:"kamu berhasil naik tangga! "+ v[0].pos}, commonNext])
+											{pesan:"kamu berhasil naik tangga! "+ v[0].pos}, commonNext], null, nomor)
 				}else{
-					jawabPesan([{pesan:"maaf jawabanmu salah, kamu gagal naik tangga"}, commonNext])
+					jawabPesan([{pesan:"maaf jawabanmu salah, kamu gagal naik tangga"}, commonNext], null, nomor)
 				}
 			}
 		}
@@ -230,7 +230,7 @@ function checkIfLadderOrSnake({ladder, snake,soal,
 			output.fun=async ()=>{
 				let objekPesan=await dapatkanPesan(nomor)
 				if(objekPesan.text == soalMe.jawabanBenar.split(".")[0]){
-					jawabPesan([{pesan:"jawabanmu benar, kamu berhasil bertahan!"}, commonNext])
+					jawabPesan([{pesan:"jawabanmu benar, kamu berhasil bertahan!"}, commonNext], null, nomor)
 					
 				}else{
 					globalSiswa.ularTangga.data[myId].pos = v[1].pos
@@ -240,7 +240,7 @@ function checkIfLadderOrSnake({ladder, snake,soal,
 																					 globalSiswa, myId})
 					jawabPesan([{opsi:{gambar:gbr}},
 											{pesan:`maaf jawabanmu salah, 
-	kamu gagal bertahan! posisimu turun ke-`+ v[1].pos}, commonNext])
+	kamu gagal bertahan! posisimu turun ke-`+ v[1].pos}, commonNext], null, nomor)
 				}
 			}
 		}
@@ -294,7 +294,7 @@ function drawPlayerPos(canvas, shiftX, pos,img, name, color){
 	let pesan=prompt()
 	return {text:pesan}
 }
-function jawabPesan(pesan){
+function jawabPesan(pesan, null, nomor){
 	for(let p of pesan){
 		console.log(p.pesan)
 		if(p.opsi?.tombol){
