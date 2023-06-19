@@ -66,7 +66,7 @@ export async function ularTangga(objekPesan, globalSiswa, nomor, myId) {
 	// })
 	let pesan=[
 		{pesan:"ini adalah permainan ular tangga untuk hari ini!",
-		 opsi:{tombol:["mulai lempar dadu"]}},
+		 opsi:{tombol:["1. mulai lempar dadu"]}},
 		{opsi:{gambar}}
 	]
 	jawabPesan(pesan, null, nomor)
@@ -85,7 +85,7 @@ export async function ularTangga(objekPesan, globalSiswa, nomor, myId) {
 	let shiftX = 260
 	let shiftY = 50
 	let commonNext={pesan:"tekan tombol atau ketik 1 untuk melanjutkan",
-							 opsi:{tombol:["lanjut"]}}
+							 opsi:{tombol:["1. lanjut"]}}
 	let prop={ladder, snake, soal:gradeGroups, 
 														 canvas, shiftX,
 									pos:globalSiswa.ularTangga.data[myId].pos ,img, gambar,
@@ -96,7 +96,7 @@ export async function ularTangga(objekPesan, globalSiswa, nomor, myId) {
 		switch(true){
 				
 			case state == 0:
-				if(objPesan.text != 1) break
+				if(!objPesan.text.startsWith(1)) break
 				let _pos0=_.random(1,6)
 				globalSiswa.ularTangga.data[myId].pos += _pos0
 				prop.pos = globalSiswa.ularTangga.data[myId].pos
