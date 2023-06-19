@@ -135,7 +135,7 @@ banyak kamu malangkah!`,
 					let soalTerpilih = soal[_pos-1]
 					if(soalTerpilih){
 						pesan =[{pesan:soalTerpilih.soal, opsi:{daftar:[soalTerpilih.a+"        ",
-								soalTerpilih.b, soalTerpilih.c, soalTerpilih.d]}}]
+								soalTerpilih.b, soalTerpilih.c, soalTerpilih.d, "e. saya belum tahu"]}}]
 						jawabPesan(pesan, null, nomor)
 						
 						let objekPesan = await dapatkanPesan(nomor)
@@ -209,7 +209,7 @@ function checkIfLadderOrSnake({ladder, snake,soal,
 			output={pesan:{pesan:"",opsi:{}}}
 			let soalMe=_.sample(soal[3])
 			output.pesan.pesan ="**WOW!** kamu akan naik tangga! tapi jawab dulu soal ini ya! kalau kamu berhasil kamu akan naik!\n"+soalMe.soal
-			output.pesan.opsi.daftar=[soalMe.a+"                    ", soalMe.b, soalMe.c, soalMe.d]
+			output.pesan.opsi.daftar=[soalMe.a+"                    ", soalMe.b, soalMe.c, soalMe.d,"e. saya belum tahu"]
 			output.fun=async ()=>{
 				let objekPesan=await dapatkanPesan(nomor)
 				if(objekPesan.text.split(".")[0]  == soalMe.jawabanBenar.split(".")[0]){
@@ -234,7 +234,7 @@ function checkIfLadderOrSnake({ladder, snake,soal,
 			let soalMe=_.sample(soal[3])
 			
 			output.pesan.pesan ="oops, kamu bakal turun nih! kamu harus jawab soal ini dulu ya supaya tidak jadi turun!\n"+soalMe.soal
-			output.pesan.opsi.daftar=[soalMe.a+"                    ", soalMe.b, soalMe.c, soalMe.d]
+			output.pesan.opsi.daftar=[soalMe.a+"                    ", soalMe.b, soalMe.c, soalMe.d, "e. saya belum tahu"]
 			
 			output.fun=async ()=>{
 				let objekPesan=await dapatkanPesan(nomor)
