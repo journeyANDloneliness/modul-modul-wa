@@ -5,7 +5,7 @@ import {sheetGetRange, doc} from "module-module-wa-masama"
 
 import { fabric } from 'fabric';
 import path  from "path"
-import savePng from "./savePng.js"
+//import savePng from "./savePng.js"
 import _ from "lodash"
 import axios from "axios"
 
