@@ -134,8 +134,8 @@ banyak kamu malangkah!`,
 					
 					let soalTerpilih = soal[_pos-1]
 					if(soalTerpilih){
-						pesan =[{pesan:soalTerpilih.soal, opsi:{daftar:[soalTerpilih.a+"        ",
-								soalTerpilih.b, soalTerpilih.c, soalTerpilih.d, "e. saya belum tahu"]}}]
+						pesan =[{pesan:soalTerpilih.soal, opsi:{multi: true,daftar:[soalTerpilih.a,
+								soalTerpilih.b, soalTerpilih.c, soalTerpilih.d]}}]
 						jawabPesan(pesan, null, nomor)
 						
 						let objekPesan = await dapatkanPesan(nomor)
@@ -206,10 +206,10 @@ function checkIfLadderOrSnake({ladder, snake,soal,
 	let output=null
 	ladder.forEach( v=>{
 		if(v[1].pos === pos ){
-			output={pesan:{pesan:"",opsi:{}}}
+			output={pesan:{pesan:"",opsi:{multi: true}}}
 			let soalMe=_.sample(soal[3])
 			output.pesan.pesan ="**WOW!** kamu akan naik tangga! tapi jawab dulu soal ini ya! kalau kamu berhasil kamu akan naik!\n"+soalMe.soal
-			output.pesan.opsi.daftar=[soalMe.a+"                    ", soalMe.b, soalMe.c, soalMe.d,"e. saya belum tahu"]
+			output.pesan.opsi.daftar=[ soalMe.b, soalMe.c, soalMe.d]
 			output.fun=async ()=>{
 				let objekPesan=await dapatkanPesan(nomor)
 				if(objekPesan.text.split(".")[0]  == soalMe.jawabanBenar.split(".")[0]){
@@ -230,11 +230,11 @@ function checkIfLadderOrSnake({ladder, snake,soal,
 	snake.forEach(v=>{
 		if(v[0].pos === pos ){
 			console.log("posisisnya",pos)
-			output={pesan:{pesan:"",opsi:{}}}
+			output={pesan:{pesan:"",opsi:{multi: true}}}
 			let soalMe=_.sample(soal[3])
 			
 			output.pesan.pesan ="oops, kamu bakal turun nih! kamu harus jawab soal ini dulu ya supaya tidak jadi turun!\n"+soalMe.soal
-			output.pesan.opsi.daftar=[soalMe.a+"                    ", soalMe.b, soalMe.c, soalMe.d, "e. saya belum tahu"]
+			output.pesan.opsi.daftar=[soalMe.a, soalMe.b, soalMe.c, soalMe.d]
 			
 			output.fun=async ()=>{
 				let objekPesan=await dapatkanPesan(nomor)
