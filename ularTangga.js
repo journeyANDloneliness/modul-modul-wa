@@ -85,7 +85,7 @@ export async function ularTangga(objekPesan, globalSiswa, nomor, myId) {
 	let state= 0
 	let shiftX = 260
 	let shiftY = 50
-	let commonNext={pesan:"tekan daftar atau ketik 1 untuk melanjutkan",
+	let commonNext={pesan:"tekan tombol atau ketik 1 untuk melanjutkan",
 							 opsi:{daftar:["1. lanjut"]}}
 	let prop={ladder, snake, soal:gradeGroups, 
 														 canvas, shiftX,
@@ -134,7 +134,7 @@ banyak kamu malangkah!`,
 					
 					let soalTerpilih = soal[_pos-1]
 					if(soalTerpilih){
-						pesan =[{pesan:soalTerpilih.soal, opsi:{daftar:[soalTerpilih.a,
+						pesan =[{pesan:soalTerpilih.soal, opsi:{daftar:[soalTerpilih.a+"        ",
 								soalTerpilih.b, soalTerpilih.c, soalTerpilih.d]}}]
 						jawabPesan(pesan, null, nomor)
 						
@@ -183,7 +183,7 @@ banyak kamu malangkah!`,
 	
 }
 async function checkIfFinish({ladder, snake,soal, 
-														 canvas, shiftX, pos,img, gambar, globalSiswa, commonNext, myId}) {
+														 canvas, shiftX, pos,img, gambar, globalSiswa, commonNext, myId, nomor}) {
 	if(pos >= 100){
 		
 		let gbr=await drawPlayerPosAll({canvas, shiftX, 
@@ -209,7 +209,7 @@ function checkIfLadderOrSnake({ladder, snake,soal,
 			output={pesan:{pesan:"",opsi:{}}}
 			let soalMe=_.sample(soal[3])
 			output.pesan.pesan ="**WOW!** kamu akan naik tangga! tapi jawab dulu soal ini ya! kalau kamu berhasil kamu akan naik!\n"+soalMe.soal
-			output.pesan.opsi.daftar=[soalMe.a, soalMe.b, soalMe.c, soalMe.d]
+			output.pesan.opsi.daftar=[soalMe.a+"                    ", soalMe.b, soalMe.c, soalMe.d]
 			output.fun=async ()=>{
 				let objekPesan=await dapatkanPesan(nomor)
 				if(objekPesan.text.split(".")[0]  == soalMe.jawabanBenar.split(".")[0]){
@@ -234,7 +234,7 @@ function checkIfLadderOrSnake({ladder, snake,soal,
 			let soalMe=_.sample(soal[3])
 			
 			output.pesan.pesan ="oops, kamu bakal turun nih! kamu harus jawab soal ini dulu ya supaya tidak jadi turun!\n"+soalMe.soal
-			output.pesan.opsi.daftar=[soalMe.a, soalMe.b, soalMe.c, soalMe.d]
+			output.pesan.opsi.daftar=[soalMe.a+"                    ", soalMe.b, soalMe.c, soalMe.d]
 			
 			output.fun=async ()=>{
 				let objekPesan=await dapatkanPesan(nomor)
