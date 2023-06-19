@@ -1,7 +1,7 @@
 
 import {dapatkanPesan, jawabPesan, abaikanPesan} from "auto-wa-rapiwha"
 
-import {sheetGetRange, doc} from "module-module-wa-masama"
+import {sheetGetRange, doc} from "./koneksiExcel.js"
 
 import { fabric } from 'fabric';
 import path  from "path"
@@ -91,8 +91,8 @@ export async function ularTangga(objekPesan, globalSiswa, nomor, myId) {
 														 canvas, shiftX,
 									pos:globalSiswa.ularTangga.data[myId].pos ,img, gambar,
 																							globalSiswa, commonNext, myId, nomor}
-	️⃣
-	let colorGrade["1️⃣⚫terlalu mudah⚫",
+	
+	let colorGrade=["1️⃣⚫terlalu mudah⚫",
 								 "2️⃣🔵sangat mudah🔵",
 								 "3️⃣🟢mudah🟢","4️⃣🟡sedang🟡","5️⃣🟠sulit🟠","️6️⃣🔴sangat sulit🔴"]
 	while(true){
