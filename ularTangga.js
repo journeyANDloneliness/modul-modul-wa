@@ -66,7 +66,7 @@ export async function ularTangga(objekPesan, globalSiswa, nomor, myId) {
 	// })
 	let pesan=[
 		{pesan:"ini adalah permainan ular tangga untuk hari ini!",
-		 opsi:{tombol:["1. mulai lempar dadu"]}},
+		 opsi:{daftar:["1. mulai lempar dadu"]}},
 		{opsi:{gambar}}
 	]
 	jawabPesan(pesan, null, nomor)
@@ -84,8 +84,8 @@ export async function ularTangga(objekPesan, globalSiswa, nomor, myId) {
 	let state= 0
 	let shiftX = 260
 	let shiftY = 50
-	let commonNext={pesan:"tekan tombol atau ketik 1 untuk melanjutkan",
-							 opsi:{tombol:["1. lanjut"]}}
+	let commonNext={pesan:"tekan daftar atau ketik 1 untuk melanjutkan",
+							 opsi:{daftar:["1. lanjut"]}}
 	let prop={ladder, snake, soal:gradeGroups, 
 														 canvas, shiftX,
 									pos:globalSiswa.ularTangga.data[myId].pos ,img, gambar,
@@ -116,7 +116,7 @@ export async function ularTangga(objekPesan, globalSiswa, nomor, myId) {
 				let soal=gradeGroups.map(v=>_.sample(v))
 				pesan =[{pesan:`pilihlah soal dibawah ini semakin sulit soal semakin
 					cepat kamu malangkah ke garis finish `}, 
-								{opsi:{tombol:soal.map((v,i)=>(i+1)+". "+ v.soal+"\n")}}
+								{opsi:{daftar:soal.map((v,i)=>(i+1)+". "+ v.soal+"\n")}}
 								]
 				jawabPesan(pesan, null, nomor)
 				while(true){
@@ -125,12 +125,12 @@ export async function ularTangga(objekPesan, globalSiswa, nomor, myId) {
 					
 					let soalTerpilih = soal[_pos-1]
 					if(soalTerpilih){
-						pesan =[{pesan:soalTerpilih.soal, opsi:{tombol:[soalTerpilih.a,
+						pesan =[{pesan:soalTerpilih.soal, opsi:{daftar:[soalTerpilih.a,
 								soalTerpilih.b, soalTerpilih.c, soalTerpilih.d]}}]
 						jawabPesan(pesan, null, nomor)
 						
 						let objekPesan = await dapatkanPesan(nomor)
-						if(objekPesan.text == soalTerpilih.jawabanBenar.split(".")[0]){
+						if(objekPesan.text.split(".")[0]  == soalTerpilih.jawabanBenar.split(".")[0]){
 							
 							globalSiswa.ularTangga.data[myId].pos += _pos
 							prop.pos = globalSiswa.ularTangga.data[myId].pos
@@ -200,10 +200,10 @@ function checkIfLadderOrSnake({ladder, snake,soal,
 			output={pesan:{pesan:"",opsi:{}}}
 			let soalMe=_.sample(soal[3])
 			output.pesan.pesan ="**WOW!** kamu akan naik tangga! tapi jawab dulu soal ini ya! kalau kamu berhasil kamu akan naik!\n"+soalMe.soal
-			output.pesan.opsi.tombol=[soalMe.a, soalMe.b, soalMe.c, soalMe.d]
+			output.pesan.opsi.daftar=[soalMe.a, soalMe.b, soalMe.c, soalMe.d]
 			output.fun=async ()=>{
 				let objekPesan=await dapatkanPesan(nomor)
-				if(objekPesan.text == soalMe.jawabanBenar.split(".")[0]){
+				if(objekPesan.text.split(".")[0]  == soalMe.jawabanBenar.split(".")[0]){
 					globalSiswa.ularTangga.data[myId].pos = v[0].pos
 					
 					let gbr=await drawPlayerPosAll({canvas, shiftX, 
@@ -225,11 +225,11 @@ function checkIfLadderOrSnake({ladder, snake,soal,
 			let soalMe=_.sample(soal[3])
 			
 			output.pesan.pesan ="oops, kamu bakal turun nih! kamu harus jawab soal ini dulu ya supaya tidak jadi turun!\n"+soalMe.soal
-			output.pesan.opsi.tombol=[soalMe.a, soalMe.b, soalMe.c, soalMe.d]
+			output.pesan.opsi.daftar=[soalMe.a, soalMe.b, soalMe.c, soalMe.d]
 			
 			output.fun=async ()=>{
 				let objekPesan=await dapatkanPesan(nomor)
-				if(objekPesan.text == soalMe.jawabanBenar.split(".")[0]){
+				if(objekPesan.text.split(".")[0] == soalMe.jawabanBenar.split(".")[0]){
 					jawabPesan([{pesan:"jawabanmu benar, kamu berhasil bertahan!"}, commonNext], null, nomor)
 					
 				}else{
@@ -297,8 +297,8 @@ function drawPlayerPos(canvas, shiftX, pos,img, name, color){
 function jawabPesan(pesan, null, nomor){
 	for(let p of pesan){
 		console.log(p.pesan)
-		if(p.opsi?.tombol){
-			p.opsi?.tombol.forEach(v=>console.log(v))
+		if(p.opsi?.daftar){
+			p.opsi?.daftar.forEach(v=>console.log(v))
 		}
 		if(p.opsi?.gambar){
 			savePng(p.opsi.gambar, "image.png");
