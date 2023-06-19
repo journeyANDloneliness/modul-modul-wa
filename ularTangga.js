@@ -209,7 +209,7 @@ function checkIfLadderOrSnake({ladder, snake,soal,
 			output={pesan:{pesan:"",opsi:{multi: true}}}
 			let soalMe=_.sample(soal[3])
 			output.pesan.pesan ="**WOW!** kamu akan naik tangga! tapi jawab dulu soal ini ya! kalau kamu berhasil kamu akan naik!\n"+soalMe.soal
-			output.pesan.opsi.daftar=[ soalMe.b, soalMe.c, soalMe.d]
+			output.pesan.opsi.daftar=[ soalMe.a, soalMe.b, soalMe.c, soalMe.d]
 			output.fun=async ()=>{
 				let objekPesan=await dapatkanPesan(nomor)
 				if(objekPesan.text.split(".")[0]  == soalMe.jawabanBenar.split(".")[0]){
@@ -318,7 +318,7 @@ function jawabPesan(pesan, null, nomor){
 
 function drawRanking({canvas, globalSiswa}) {
 	Object.entries( globalSiswa.ularTangga.data).
-		sort((a, b) => b.pos - a.pos).
+		sort((a, b) => b[1].pos - a[1].pos).
 		forEach(([key, value], i) =>{
 			const text = new fabric.Text(`${(i+1)}. ${key} | ${value.pos}`, {
 				fontSize: 13,
