@@ -92,9 +92,9 @@ export async function ularTangga(objekPesan, globalSiswa, nomor, myId) {
 									pos:globalSiswa.ularTangga.data[myId].pos ,img, gambar,
 																							globalSiswa, commonNext, myId, nomor}
 	
-	let colorGrade=["1️⃣⚫terlalu mudah⚫",
-								 "2️⃣🔵sangat mudah🔵",
-								 "3️⃣🟢mudah🟢","4️⃣🟡sedang🟡","5️⃣🟠sulit🟠","️6️⃣🔴sangat sulit🔴"]
+	let colorGrade=["1️⃣⚫melangkah 1x⚫",
+								 "2️⃣🔵melangkah 2x🔵",
+								 "3️⃣🟢melangkah 3x🟢","4️⃣🟡melangkah 4x🟡","5️⃣🟠melangkah 5x🟠","️6️⃣🔴melangkah 6x🔴"]
 	while(true){
 		let objPesan = await dapatkanPesan(nomor)
 		
@@ -123,7 +123,7 @@ export async function ularTangga(objekPesan, globalSiswa, nomor, myId) {
 				
 				let soal=gradeGroups.map(v=>_.sample(v))
 				pesan =[{pesan:`📝 pilihlah soal dibawah ini.
-semakin sulit soal semakin
+semakin tinggi nomor soal semakin
 banyak kamu malangkah!`,
 								opsi:{daftar:soal.map((v,i)=>colorGrade[i]+"\n"+(i+1)+". "+ v.soal+"\n")}}
 								]
@@ -139,7 +139,7 @@ banyak kamu malangkah!`,
 						jawabPesan(pesan, null, nomor)
 						
 						let objekPesan = await dapatkanPesan(nomor)
-						if(objekPesan.text.split(".")[0]  == soalTerpilih.jawabanBenar.split(".")[0]){
+						if(objekPesan.text.split(".")[0].toLowerCase()  == soalTerpilih.jawabanBenar.split(".")[0].toLowerCase()){
 							
 							globalSiswa.ularTangga.data[myId].pos += _pos
 							prop.pos = globalSiswa.ularTangga.data[myId].pos
@@ -212,7 +212,8 @@ function checkIfLadderOrSnake({ladder, snake,soal,
 			output.pesan.opsi.daftar=[ soalMe.a, soalMe.b, soalMe.c, soalMe.d]
 			output.fun=async ()=>{
 				let objekPesan=await dapatkanPesan(nomor)
-				if(objekPesan.text.split(".")[0]  == soalMe.jawabanBenar.split(".")[0]){
+				if(objekPesan.text.split(".")[0].toLowerCase()
+					 == soalMe.jawabanBenar.split(".")[0].toLowerCase()){
 					globalSiswa.ularTangga.data[myId].pos = v[0].pos
 					
 					let gbr=await drawPlayerPosAll({canvas, shiftX, 
@@ -238,7 +239,8 @@ function checkIfLadderOrSnake({ladder, snake,soal,
 			
 			output.fun=async ()=>{
 				let objekPesan=await dapatkanPesan(nomor)
-				if(objekPesan.text.split(".")[0] == soalMe.jawabanBenar.split(".")[0]){
+				if(objekPesan.text.split(".")[0].toLowerCase()
+					 == soalMe.jawabanBenar.split(".")[0].toLowerCase()){
 					jawabPesan([{pesan:"jawabanmu benar, kamu berhasil bertahan!"}, commonNext], null, nomor)
 					
 				}else{
