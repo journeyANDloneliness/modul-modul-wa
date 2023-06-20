@@ -14,7 +14,7 @@ export async function ularTangga(objekPesan, globalSiswa, nomor, myId) {
 	
 	
 	const img=await  new Promise((resolve)=>{
-		fabric.Image.fromURL(`https://iili.io/HXgXwRs.png`, function(img) {
+		fabric.Image.fromURL(`https://i.ibb.co/VWF3mXm/ular-tangga.png`, function(img) {
 		 	resolve(img)
 		});
 	})
@@ -43,7 +43,7 @@ export async function ularTangga(objekPesan, globalSiswa, nomor, myId) {
 	ladder = ladder.filter(v=>v)
 	snake = snake.filter(v=>v)
 	if(!globalSiswa.ularTangga.mainGenerated){
-		for(let v of ladder){
+		/*for(let v of ladder){
 			console.log(v)
 			let mladder=await drawLadder2(canvas, v[0].x*50, v[0].y*50, v[1].x*50, v[1].y*50)
 			console.log("cccc")
@@ -54,7 +54,7 @@ export async function ularTangga(objekPesan, globalSiswa, nomor, myId) {
 			let mladder=await drawLadder2(canvas, v[0].x*50, v[0].y*50, v[1].x*50, v[1].y*50, ["brown","yellow"])
 			console.log("cccc")
 			//canvas.add(mladder)
-		}
+		}*/
 		//globalSiswa.ularTangga.mainGenerated = true
 	}
 	
