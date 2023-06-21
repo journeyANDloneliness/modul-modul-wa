@@ -1,14 +1,14 @@
 import {dapatkanPesan, jawabPesan, abaikanPesan} from "auto-wa-rapiwha"
 
 import {doc}  from "./koneksiExcel.js"
-
+import  _ from "lodash"
 
 
 	
 
 export async function latihanPilihanGanda({objekPesan, nomor, soal}){
 	let sheet = doc.sheetsByTitle[soal]; 
-	let rows = await sheet.getRows();
+	let rows = await sheet.getRows({offset: _.random(0,45),limit: 10});
 	let soal_soal = rows.map((v,i)=>{
 		return {
 				pesan: v.nomor+" "+v.soal,
