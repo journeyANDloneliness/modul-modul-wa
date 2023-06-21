@@ -25,7 +25,7 @@ export async function latihanPilihanGandaAcak({objekPesan, nomor, soal}){
 	let pesanDikirim = [...soal_soal]
 	let sample= _.sample(pesanDikirim)
 	let pesanDikirimAcak = [sample]
-	let pesanDikirim = _.pull(pesanDikirim, sample);
+	pesanDikirim = _.pull(pesanDikirim, sample);
 	
 	pesanDikirimAcak.push({pesan:`reply pesan ini atau tekan tombol pada soal yang tersedia untuk memberikan jawabanmu. tombol paling terakhir ditekan akan menjadi nilai mu.
  nilai akan diberikan setalah kamu klik tombol konfirmasi nilai`,opsi:{
