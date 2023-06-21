@@ -53,7 +53,7 @@ export async function latihanPilihanGanda({objekPesan, nomor, soal}){
 				hasil[parseInt(soal.nomor)] = soal.nomor+" jawaban anda salah ❌ untuk :"+objekPesan.pesan
 				
 			}
-		}else if(objekPesan.pesan == "konfirmasi nilai"){
+		}else if(["konfirmasi nilai","konfimasi","konfirm","home","sudah","selesai"].includes(objekPesan.pesan.toLowerCase()){
 				
 				break
 		}else{

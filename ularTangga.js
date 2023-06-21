@@ -288,7 +288,7 @@ function drawPlayerPos(canvas, shiftX, pos,img, name, color){
 				radius: 15,
 				fill: color,
 				left: shiftX+(50 * (pos% 10 === 0? 10: (pos% 10)))  ,
-				top: img.height-((50 * (Math.floor(pos% 10 === 0?( pos/ 10)-1: pos/ 10)))+55),
+				top: img.height-((60 * (Math.floor(pos% 10 === 0?( pos/ 10)-1: pos/ 10)))+55),
 			});
 	
 			const text = new fabric.Text(name, {
@@ -296,7 +296,7 @@ function drawPlayerPos(canvas, shiftX, pos,img, name, color){
 				fill: 'white',
 				fontWeight: 'bold',
 				left: shiftX+(50 * (pos% 10 === 0? 10: (pos% 10)) )+ 6 ,
-				top: img.height-((50 * (Math.floor(pos% 10 === 0? (pos/10)-1: (pos/ 10))))+55)+5,
+				top: img.height-((60 * (Math.floor(pos% 10 === 0? (pos/10)-1: (pos/ 10))))+55)+5,
 			});
 			canvas.add(circle)
 			canvas.add(text)
