@@ -24,8 +24,8 @@ export async function latihanPilihanGandaAcak({objekPesan, nomor, soal}){
 	console.log(soal_soal)
 	let pesanDikirim = [...soal_soal]
 	let sample= _.sample(pesanDikirim)
-	pesanDikirimAcak = [sample]
-	pesanDikirim = _.pull(pesanDikirim, sample);
+	let pesanDikirimAcak = [sample]
+	let pesanDikirim = _.pull(pesanDikirim, sample);
 	
 	pesanDikirimAcak.push({pesan:`reply pesan ini atau tekan tombol pada soal yang tersedia untuk memberikan jawabanmu. tombol paling terakhir ditekan akan menjadi nilai mu.
  nilai akan diberikan setalah kamu klik tombol konfirmasi nilai`,opsi:{
@@ -51,7 +51,7 @@ export async function latihanPilihanGandaAcak({objekPesan, nomor, soal}){
 				jumlahBenar++
 			}
 			
-			else if(["konfirmasi nilai","konfimasi","konfirm"].includes(objekPesan.pesan.toLowerCase() )){
+			else if(["konfirmasi nilai","konfimasi","konfirm","home","sudah","selesai"].includes(objekPesan.pesan.toLowerCase() )){
 				
 				break
 			}
