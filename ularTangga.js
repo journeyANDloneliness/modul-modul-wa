@@ -202,6 +202,7 @@ async function checkIfFinish({objekPesan, ladder, snake,soal,
 				left: 50,
 				top: 200 ,
 			}))
+		
 		jawabPesan([{opsi:{gambar:canvas.toDataURL()}},
 											{pesan:"SELAMAT! kamu berhasil!"}], null, nomor)
 		return true
