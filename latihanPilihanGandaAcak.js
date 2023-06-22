@@ -20,7 +20,7 @@ async function getRandomSoal(sheet, excludes){
 				pesan: v.nomor+" "+v.soal,
 				opsi:{daftar: [v.a, v.b, v.c, v.d], multi: true},
 				buttonText:"pilihan ganda",
-				jawabanBenar:v.jawabanBenar
+				...v
 			}
 	})
 }
@@ -43,11 +43,7 @@ export async function latihanPilihanGandaAcak({objekPesan, nomor, soal}){
 		
 		let objekPesan = await dapatkanPesan(nomor)
 		//jawabPesan("anda menjawab "+objekPesan.pesan)
-		let soal = rows
-			.find(v=>{
-				//console.log( v.nomor+" "+v.soal , objekPesan.quotedMessage.body)
-				return objekPesan.quotedMessage?.body?.includes( v.nomor+" "+v.soal )
-			})
+		let soal = pesanDikirim[0]
 		if(soal){
 			if(	objekPesan.pesan.startsWith(soal?.jawabanBenar )){
 				hasil[parseInt(soal.nomor)] = soal.nomor+" jawaban anda benar ✅ untuk :"+objekPesan.pesan
