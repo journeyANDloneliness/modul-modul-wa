@@ -20,8 +20,7 @@ async function getRandomSoal(sheet, excludes){
 				pesan: v.nomor+" "+v.soal,
 				opsi:{daftar: [v.a, v.b, v.c, v.d], multi: true},
 				buttonText:"pilihan ganda",
-				...v
-			}
+				soal:v.soal,nomor: v.nomor, jawabanBenar: v.jawabanBenar			}
 	})
 }
 export async function latihanPilihanGandaAcak({objekPesan, nomor, soal}){
