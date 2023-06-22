@@ -2,6 +2,7 @@ import {dapatkanPesan, jawabPesan, abaikanPesan} from "auto-wa-rapiwha"
 
 import {doc}  from "./koneksiExcel.js"
 import  _ from "lodash"
+import {keluarDariMenu} from "./common.js"
 
 
 	
@@ -45,7 +46,7 @@ export async function latihanPilihanGanda({objekPesan, nomor, soal}){
 				jumlahBenar++
 			}
 			
-			else if(["konfirmasi nilai","konfimasi","konfirm"].includes(objekPesan.pesan.toLowerCase() )){
+			else if(keluarDariMenu(objekPesan.text)){
 				
 				break
 			}
@@ -54,7 +55,7 @@ export async function latihanPilihanGanda({objekPesan, nomor, soal}){
 				
 			}
 			jawabPesan("anda masih bisa mengubah jawaban anda pada nomor soal yang sama. ketik konfirmasi jika merasa sudah selesai",{tombol:["konfirmasi nilai"]},nomor)
-		}else if(["konfirmasi nilai","konfimasi","konfirm","home","sudah","selesai"].includes(objekPesan.pesan.toLowerCase())){
+		}else if(keluarDariMenu(objekPesan.text)){
 				
 				break
 		}else{

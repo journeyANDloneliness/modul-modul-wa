@@ -1,7 +1,7 @@
 import {dapatkanPesan, jawabPesan, abaikanPesan} from "auto-wa-rapiwha"
 
 import {doc}  from "./koneksiExcel.js"
-
+import {keluarDariMenu} from "./common.js"
 import _ from  'lodash'
 
 
@@ -49,7 +49,7 @@ export async function latihanPilihanGandaAcak({objekPesan, nomor, soal}){
 				jumlahBenar++
 			}
 			
-			else if(["konfirmasi nilai","konfimasi","konfirm","home","sudah","selesai"].includes(objekPesan.pesan.toLowerCase() )){
+			else if(keluarDariMenu(objekPesan.text)){
 				
 				break
 			}
@@ -61,7 +61,7 @@ export async function latihanPilihanGandaAcak({objekPesan, nomor, soal}){
 			pesanDikirim  = await getRandomSoal(sheet, sampled)
 			
 			jawabPesan([{pesan:hasil[parseInt(soal.nomor)]}, ...pesanDikirim], null, nomor )
-		}else if(["konfirmasi nilai","konfimasi","konfirm","home","sudah","selesai"].includes(objekPesan.pesan.toLowerCase())){
+		}else if(keluarDariMenu(objekPesan.text)){
 				
 				break
 		}else{
