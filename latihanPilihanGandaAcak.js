@@ -70,7 +70,7 @@ export async function latihanPilihanGandaAcak({objekPesan, nomor, soal}){
 		
 		
 	}
-	jawabPesan("ini total hasil anda:\n"+hasil.map((v,ind)=>v?v:"anda mengosongkan soal ke-"+ind).join("\n"),{noLoading:false}, nomor)
+	jawabPesan("ini total hasil anda:\n"+hasil.filter(v=>v).map((v,ind)=>v?v:"anda mengosongkan soal ke-"+ind).join("\n"),{noLoading:false}, nomor)
 
 	sheet = doc.sheetsByTitle["nilai_siswa"]; 
 	let rows = await sheet.getRows();
