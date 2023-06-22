@@ -53,6 +53,9 @@ export async function materi({objekPesan, nomor, materiSheetName, awal}){
 				await jawabPesan("maaf belum tersedia materi yang dimaksud", null, nomor)
 			}
 		}
+		else{
+			jawabPesan("tidak ada menu tersebut",null,nomor)
+		}
 	}
 	
 }
