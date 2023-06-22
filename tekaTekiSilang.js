@@ -1,4 +1,5 @@
 import {sheetGetRange} from "./koneksiExcel.js"
+import {keluarDariMenu} from "./common.js"
 
 import { fabric } from 'fabric';
 import {dapatkanPesan, jawabPesan, abaikanPesan} from "auto-wa-rapiwha"
@@ -82,7 +83,7 @@ _________________________________________
 	while (true) {
 		let objekPesan = await dapatkanPesan(nomor)
 
-		if(objekPesan.pesan == "konfirmasi jawaban"){
+		if(keluarDariMenu( objekPesan.text ,"konfirmasi jawaban")){
 			jawabPesan(`kamu keluar dari sesi teka-teki silang.
 								 jawaban kamu terkonfoirmasi dan disimpan. tetapi kamu masih bisa mengulanginya lagi`, null, nomor)
 			

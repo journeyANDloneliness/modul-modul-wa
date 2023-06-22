@@ -1,5 +1,6 @@
 
 import {dapatkanPesan, jawabPesan, abaikanPesan} from "auto-wa-rapiwha"
+import {keluarDariMenu} from "./common.js"
 
 import {sheetGetRange, doc} from "./koneksiExcel.js"
 
@@ -106,6 +107,7 @@ export async function ularTangga(objekPesan, globalSiswa, nomor, myId) {
 				let _pos0=_.random(1,6)
 				globalSiswa.ularTangga.data[myId].pos += _pos0
 				prop.pos = globalSiswa.ularTangga.data[myId].pos
+				prop.objekPesan = objPesan
 				if(await checkIfFinish(prop)) return
 				
 				let gbr2 = await drawPlayerPosAll(prop)
@@ -143,7 +145,7 @@ banyak kamu malangkah!`,
 							
 							globalSiswa.ularTangga.data[myId].pos += _pos
 							prop.pos = globalSiswa.ularTangga.data[myId].pos
-							
+							prop.objekPesan = objPesan
 							if(await checkIfFinish(prop)) return
 							
 							let gbr2 = await drawPlayerPosAll(prop)
@@ -182,15 +184,15 @@ banyak kamu malangkah!`,
 	}
 	
 }
-async function checkIfFinish({ladder, snake,soal, 
+async function checkIfFinish({objekPesan, ladder, snake,soal, 
 														 canvas, shiftX, pos,img, gambar, globalSiswa, commonNext, myId, nomor}) {
-	if(pos >= 100){
+	if(pos >= 100 || keluarDariMenu(objekPesan.text)){
 		
 		let gbr=await drawPlayerPosAll({canvas, shiftX, 
 														pos:globalSiswa.ularTangga.data[myId].pos ,img, gambar, 
 																					globalSiswa, myId})
-		canvas.add(new fabric.Text("SELAMAT! kamu berhasil rank mu=", {
-				fontSize: 50,
+		canvas.add(new fabric.Text("SELAMAT! kamu berhasil\n rank mu="+globalSiswa.ularTangga.data[myId].pos, {
+				fontSize: 40,
 				fill: 'BLACK',
 				fontWeight: 'bold',
 				left: 50,
