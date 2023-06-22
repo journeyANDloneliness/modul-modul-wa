@@ -73,7 +73,7 @@ export async function latihanPilihanGandaAcak({objekPesan, nomor, soal}){
 	jawabPesan("ini total hasil anda:\n"+hasil.map((v,ind)=>v?v:"anda mengosongkan soal ke-"+ind).join("\n"),{noLoading:false}, nomor)
 
 	sheet = doc.sheetsByTitle["nilai_siswa"]; 
-	rows = await sheet.getRows();
+	let rows = await sheet.getRows();
 	let siswa = rows.find(v=>v.nama == objekPesan.contact.name)
 	if(siswa){
 			siswa.nilai_latihan1 = jumlahBenar
