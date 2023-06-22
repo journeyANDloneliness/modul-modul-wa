@@ -60,7 +60,7 @@ export async function latihanPilihanGandaAcak({objekPesan, nomor, soal}){
 		
 			pesanDikirim  = await getRandomSoal(sheet, sampled)
 			
-			jawabPesan([{pesan:hasil[parseInt(soal.nomor)]}, ...pesanDikirim] )
+			jawabPesan([{pesan:hasil[parseInt(soal.nomor)]}, ...pesanDikirim], null, nomor )
 		}else if(["konfirmasi nilai","konfimasi","konfirm","home","sudah","selesai"].includes(objekPesan.pesan.toLowerCase())){
 				
 				break
