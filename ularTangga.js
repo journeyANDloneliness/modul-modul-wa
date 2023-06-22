@@ -100,7 +100,8 @@ export async function ularTangga(objekPesan, globalSiswa, nomor, myId) {
 		let objPesan = await dapatkanPesan(nomor)
 		
 		switch(true){
-				
+			case keluarDariMenu(objPesan.text):
+				return
 			case state == 0:
 				commonNext.opsi.daftar = ["1. lanjut giliran **lihat soal 📝**"]
 				if(!objPesan.text.startsWith(1)) break
@@ -132,6 +133,7 @@ banyak kamu malangkah!`,
 				jawabPesan(pesan, null, nomor)
 				while(true){
 					let objekPesan = await dapatkanPesan(nomor)
+					if(keluarDariMenu(objekPesan.text)) return
 					let _pos= parseInt(objekPesan.text.split(" ")[0])
 					
 					let soalTerpilih = soal[_pos-1]
@@ -141,6 +143,8 @@ banyak kamu malangkah!`,
 						jawabPesan(pesan, null, nomor)
 						
 						let objekPesan = await dapatkanPesan(nomor)
+						if(keluarDariMenu(objekPesan.text)) return
+						
 						if(objekPesan.text.split(".")[0].toLowerCase()  == soalTerpilih.jawabanBenar.split(".")[0].toLowerCase()){
 							
 							globalSiswa.ularTangga.data[myId].pos += _pos
@@ -186,7 +190,7 @@ banyak kamu malangkah!`,
 }
 async function checkIfFinish({objekPesan, ladder, snake,soal, 
 														 canvas, shiftX, pos,img, gambar, globalSiswa, commonNext, myId, nomor}) {
-	if(pos >= 100 || keluarDariMenu(objekPesan.text)){
+	if(pos >= 100 ){
 		
 		let gbr=await drawPlayerPosAll({canvas, shiftX, 
 														pos:globalSiswa.ularTangga.data[myId].pos ,img, gambar, 
