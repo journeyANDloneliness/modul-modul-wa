@@ -10,7 +10,7 @@ import _ from  'lodash'
   const range = _.difference(_.range(min, max + 1), exclusions);
   return _.sample(range);
 }
-async function getRandomSoal(excludes){
+async function getRandomSoal(sheet, excludes){
 	let sampledNumber=getRandomNumber(0,50,excludes )
 	excludes.push(sampledNumber)
 	let rows = await sheet.getRows({offset: sampledNumber, limit:1});
@@ -28,7 +28,7 @@ export async function latihanPilihanGandaAcak({objekPesan, nomor, soal}){
 	let sheet = doc.sheetsByTitle[soal]; 
 	let sampled=[]
 		
-	let pesanDikirim = await getRandomSoal(sampled)
+	let pesanDikirim = await getRandomSoal(sheet,sampled)
 	
 	pesanDikirim.push({pesan:`reply pesan ini atau tekan tombol pada soal yang tersedia untuk memberikan jawabanmu. tombol paling terakhir ditekan akan menjadi nilai mu.
  nilai akan diberikan setalah kamu klik tombol konfirmasi nilai`,opsi:{
@@ -63,7 +63,7 @@ export async function latihanPilihanGandaAcak({objekPesan, nomor, soal}){
 				
 			}
 		
-			pesanDikirim  = await getRandomSoal(sampled)
+			pesanDikirim  = await getRandomSoal(sheet, sampled)
 			
 			jawabPesan([{pesan:hasil[parseInt(soal.nomor)]}, ...pesanDikirim] )
 		}else if(objekPesan.pesan == "konfirmasi nilai"){
