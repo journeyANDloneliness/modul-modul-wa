@@ -6,12 +6,16 @@ import _ from  'lodash'
 
 
 
+	function getRandomNumber(min, max, exclusions) {
+  const range = _.difference(_.range(min, max + 1), exclusions);
+  return _.sample(range);
+}
+async function getRandomSoal(excludes){
+	let sampledNumber=getRandomNumber(0,50,excludes )
+	excludes.push(sampledNumber)
+	let rows = await sheet.getRows({offset: sampledNumber, limit:1});
 	
-
-export async function latihanPilihanGandaAcak({objekPesan, nomor, soal}){
-	let sheet = doc.sheetsByTitle[soal]; 
-	let rows = await sheet.getRows();
-	let soal_soal = rows.map((v,i)=>{
+	return rows.map((v,i)=>{
 		return {
 				pesan: v.nomor+" "+v.soal,
 				opsi:{daftar: [v.a, v.b, v.c, v.d], multi: true},
@@ -19,18 +23,17 @@ export async function latihanPilihanGandaAcak({objekPesan, nomor, soal}){
 				jawabanBenar:v.jawabanBenar
 			}
 	})
-	//memastikan hanya  sheet dengan "jawaban benar colom" terisi saja yang diambil
-	soal_soal = soal_soal.filter(v=>v.jawabanBenar)
-	console.log(soal_soal)
-	let pesanDikirim = [...soal_soal]
-	let sample= _.sample(pesanDikirim)
-	let pesanDikirimAcak = [sample]
-	pesanDikirim = _.pull(pesanDikirim, sample);
+}
+export async function latihanPilihanGandaAcak({objekPesan, nomor, soal}){
+	let sheet = doc.sheetsByTitle[soal]; 
+	let sampled=[]
+		
+	let pesanDikirim = await getRandomSoal(sampled)
 	
-	pesanDikirimAcak.push({pesan:`reply pesan ini atau tekan tombol pada soal yang tersedia untuk memberikan jawabanmu. tombol paling terakhir ditekan akan menjadi nilai mu.
+	pesanDikirim.push({pesan:`reply pesan ini atau tekan tombol pada soal yang tersedia untuk memberikan jawabanmu. tombol paling terakhir ditekan akan menjadi nilai mu.
  nilai akan diberikan setalah kamu klik tombol konfirmasi nilai`,opsi:{
 		tombol:["konfirmasi nilai"]}})
-	await jawabPesan(pesanDikirimAcak, null, nomor)
+	await jawabPesan(pesanDikirim, null, nomor)
 	
 	let hasil = []
 	
@@ -59,12 +62,10 @@ export async function latihanPilihanGandaAcak({objekPesan, nomor, soal}){
 				hasil[parseInt(soal.nomor)] = soal.nomor+" jawaban anda salah ❌ untuk :"+objekPesan.pesan
 				
 			}
-			///buat soal acak lagi
-			let sample= _.sample(pesanDikirim)
-			pesanDikirim = _.pull(pesanDikirim, sample)
-			pesanDikirimAcak = _.replace(pesanDikirimAcak, 
-																	 pesanDikirimAcak[0],sample)
-			jawabPesan([{pesan:hasil[parseInt(soal.nomor)]}, ...pesanDikirimAcak] )
+		
+			pesanDikirim  = await getRandomSoal(sampled)
+			
+			jawabPesan([{pesan:hasil[parseInt(soal.nomor)]}, ...pesanDikirim] )
 		}else if(objekPesan.pesan == "konfirmasi nilai"){
 				
 				break
