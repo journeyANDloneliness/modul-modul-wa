@@ -45,7 +45,7 @@ export async function materi({objekPesan, nomor, materiSheetName, awal}){
 													 multi: true}}
 													]
 					if(foundMateri.url){
-						pesanDikirim.unshift({	pesan: "gambar", opsi:{gambar:
+						pesanDikirim.unshift({	pesan: " ", opsi:{gambar:
 						{url:foundMateri.url} }})
 					}
 					await jawabPesan(pesanDikirim, null, nomor)
