@@ -48,7 +48,7 @@ export async function latihanPilihanGanda({objekPesan, nomor, soal}){
 			.find(v=>{
 				objekPesan.text.startsWith(v.nomor)
 			})
-			let jawabanKu= objekPesan.text.toLowerCase().split[" "][0]
+			let jawabanKu= objekPesan.text.toLowerCase().split(" ")[0]
 		}
 		let jawabanBenar= soal?.jawabanBenar.split(".")[0].toLowerCase() 
 	
