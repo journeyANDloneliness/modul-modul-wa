@@ -65,16 +65,15 @@ export async function tekaTekiSilang({objekPesan, nomor}) {
 		soal,
 		{pesan:`*peraturanya*: 
 _________________________________________
-•  	klik daftar yang mana pertanyaan yang mau dijawab kemudian 
+•  Klik daftar yang mana pertanyaan yang mau dijawab kemudian 
 	pesan kamu 	selanjutnya adalah jawaban kamu.
 
-•  tekan tombol konfirmasi ini jika sudah selesai, 
+• Tekan tombol konfirmasi ini jika sudah selesai, 
  	kamu tetap bisa tekan tombol  konfirmasi meski belum mengisi
 	semua jawaban karena mungkin masih terlalu sulit untukmu.
  
-• 	konfirmasi jawaban hanya bisa dilakukan selbelum tanggal:
-		jika kamu berhasil menjawab semua pertanyaan jawaban akan otomatis 
-	disimpan dan nilai kamu bertambah`,
+• Konfirmasi jawaban hanya bisa dilakukan selbelum tanggal:
+		jika kamu berhasil menjawab semua pertanyaan jawaban akan otomatis disimpan dan nilai kamu bertambah`,
 		 opsi:{tombol:["konfirmasi jawaban"]}}
 	]
 	jawabPesan(pesan, null, nomor)

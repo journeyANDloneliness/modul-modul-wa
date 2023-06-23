@@ -44,7 +44,7 @@ export async function latihanPilihanGandaAcak({objekPesan, nomor, soal}){
 		//jawabPesan("anda menjawab "+objekPesan.pesan)
 		let soal = pesanDikirim[0]
 		if(soal){
-			if(	objekPesan.pesan.startsWith(soal?.jawabanBenar )){
+			if(	objekPesan.pesan.toLowerCase().startsWith(soal?.jawabanBenar.split(".")[0].toLowerCase() )){
 				hasil[parseInt(soal.nomor)] = soal.nomor+" jawaban anda benar ✅ untuk :"+objekPesan.pesan
 				jumlahBenar++
 			}

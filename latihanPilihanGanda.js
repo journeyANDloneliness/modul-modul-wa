@@ -39,9 +39,21 @@ export async function latihanPilihanGanda({objekPesan, nomor, soal}){
 			.find(v=>{
 				//console.log( v.nomor+" "+v.soal , objekPesan.quotedMessage.body)
 				return objekPesan.quotedMessage?.body?.includes( v.nomor+" "+v.soal )
+		
 			})
+		let jawabanKu= objekPesan.text.toLowerCase() 
+		
+		if(!soal) {
+			soal=rows
+			.find(v=>{
+				objekPesan.text.startsWith(v.nomor)
+			})
+			let jawabanKu= objekPesan.text.toLowerCase().split[" "][0]
+		}
+		let jawabanBenar= soal?.jawabanBenar.split(".")[0].toLowerCase() 
+	
 		if(soal){
-			if(	objekPesan.pesan.startsWith(soal?.jawabanBenar )){
+			if(	jawabanKu.startsWith(jawabanBenar )){
 				hasil[parseInt(soal.nomor)] = soal.nomor+" jawaban anda benar ✅ untuk :"+objekPesan.pesan
 				jumlahBenar++
 			}
@@ -59,7 +71,8 @@ export async function latihanPilihanGanda({objekPesan, nomor, soal}){
 				
 				break
 		}else{
-			jawabPesan("reply lah soal yang hendak dijawab terlebih dahulu",null,nomor)
+			jawabPesan("reply lah soal yang hendak dijawab terlebih dahulu seprti gambar berikut. atau awali jawabanmu dengan soal yang dipilih misal soal nomor '10' maka '10 A'",{
+				gambar:{url:"https://imgtr.ee/images/2023/06/23/m47M1.md.jpg"}},nomor)
 		}
 		
 		
