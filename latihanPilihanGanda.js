@@ -46,7 +46,7 @@ export async function latihanPilihanGanda({objekPesan, nomor, soal}){
 		if(!soal) {
 			soal=rows
 			.find(v=>{
-				objekPesan.text.startsWith(v.nomor)
+				return objekPesan.text.startsWith(v.nomor)
 			})
 			let jawabanKu= objekPesan.text.toLowerCase().split(" ")[0]
 		}
