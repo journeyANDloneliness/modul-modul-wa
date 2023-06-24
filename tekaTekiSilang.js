@@ -89,8 +89,8 @@ _________________________________________
 			break
 		}
 		for(let r of rangesSoal){
-			if(objekPesan.pesan == r[0]+". "+r[1] || objekPesan.pesan == r[0] ){
-				jawabPesan("silahkan jawab pertanyaan untuk soal yang dipilih", null, nomor)
+			if(objekPesan.pesan == r[0]+". "+r[1] ||( objekPesan.pesan == r[0] &&  r[1] ) ){
+				jawabPesan("silahkan jawab pertanyaan. \n"+r[1], null, nomor)
 			
 				let objekPesan = await dapatkanPesan(nomor)
 				if(objekPesan.pesan.toLowerCase() == r[2].toLowerCase()){
