@@ -68,7 +68,7 @@ export async function ularTangga(objekPesan, globalSiswa, nomor, myId) {
 	let pesan=[
 		{opsi:{gambar}},
 		{pesan:"ini adalah permainan ular tangga untuk hari ini!",
-		 opsi:{daftar:["1. mulai **lempar dadu 🎲**"]}},
+		 opsi:{daftar:["1. mulai **lempar dadu 🎲** ketik 1 atau tekan tombol"]}},
 		
 	]
 	jawabPesan(pesan, null, nomor)
@@ -103,7 +103,7 @@ export async function ularTangga(objekPesan, globalSiswa, nomor, myId) {
 			case keluarDariMenu(objPesan.text):
 				return
 			case state == 0:
-				commonNext.opsi.daftar = ["1. lanjut giliran **lihat soal 📝**"]
+				commonNext.opsi.daftar = ["1. lanjut giliran **lihat soal 📝** ketik 1 atau tekan tombol"]
 				if(!objPesan.text.startsWith(1)) break
 				let _pos0=_.random(1,6)
 				globalSiswa.ularTangga.data[myId].pos += _pos0
@@ -122,7 +122,7 @@ export async function ularTangga(objekPesan, globalSiswa, nomor, myId) {
 				break
 				
 			case state == 1:
-				commonNext.opsi.daftar = ["1. lanjut giliran **lempar dadu 🎲**"]
+				commonNext.opsi.daftar = ["1. lanjut giliran **lempar dadu 🎲** ketik 1 atau tekan tombol"]
 				
 				let soal=gradeGroups.map(v=>_.sample(v))
 				pesan =[{pesan:`📝 pilihlah soal dibawah ini.
