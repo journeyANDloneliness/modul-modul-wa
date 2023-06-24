@@ -88,7 +88,7 @@ _________________________________________
 			break
 		}
 		for(let r of rangesSoal){
-			if(objekPesan.pesan == r[0]+". "+r[1] ||( objekPesan.pesan == r[0] &&  r[1] ) ){
+			if(objekPesan.pesan == r[0]+". "+r[1] ||( parseInt(objekPesan.pesan) == r[0] &&  r[1] ) ){
 				jawabPesan("silahkan jawab pertanyaan. \n"+r[1], null, nomor)
 			
 				let objekPesan = await dapatkanPesan(nomor)
@@ -133,7 +133,7 @@ _________________________________________
 				
 			}
 		}
-		jawabPesan("maaf. tidak ada pertanyaan seperti itu di teka-teki silang ini", null, nomor)
+		jawabPesan(`maaf. tidak ada pertanyaan seperti itu di teka-teki silang ini, misal soal no 1: ketik "1"  lalu ketika soal dimunculkan, ketiklah jawabanya`, null, nomor)
 	}
 	
 }
