@@ -104,7 +104,7 @@ export async function ularTangga(objekPesan, globalSiswa, nomor, myId) {
 				return
 			case state == 0:
 				commonNext.opsi.daftar = ["1. lanjut giliran **lihat soal 📝** ketik 1 atau tekan tombol"]
-				if(!objPesan.text.startsWith(1)) break
+				if(!objPesan.text?.startsWith(1)) break
 				let _pos0=_.random(1,6)
 				globalSiswa.ularTangga.data[myId].pos += _pos0
 				prop.pos = globalSiswa.ularTangga.data[myId].pos

@@ -41,12 +41,12 @@ export async function latihanPilihanGanda({objekPesan, nomor, soal}){
 				return objekPesan.quotedMessage?.body?.includes( v.nomor+" "+v.soal )
 		
 			})
-		let jawabanKu= objekPesan.text.toLowerCase() 
+		let jawabanKu= objekPesan.text?.toLowerCase() 
 		
 		if(!soal) {
 			soal=rows
 			.find(v=>{
-				return objekPesan.text.startsWith(v.nomor)
+				return objekPesan.text?.startsWith(v.nomor)
 			})
 			let jawabanKu= objekPesan.text.toLowerCase().split(" ")[0]
 		}
